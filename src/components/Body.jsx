@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCards";
 import Banner from "./Banner";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [imageOfFoods, setImageOfFood] = useState([]);
@@ -33,7 +34,7 @@ const Body = () => {
     listOfRestaurants.length === 0 ||
     imageOfFoods.length === 0
   ) {
-    return <h1>Loading ...</h1>;
+    return <Shimmer />;
   }
 
   return (
