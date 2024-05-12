@@ -1,6 +1,9 @@
 import logoImg from "./logo.png";
+import { useState } from "react";
 
 const Header = () => {
+  const [btnNameReact, setBtnNameReact] = useState("Login");
+
   return (
     <div id="header">
       <div id="logo-container">
@@ -25,8 +28,16 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <a href="#login" className="login">
-              <i className="fa-solid fa-right-to-bracket icons login"></i>Login
+            <a
+              href="#login"
+              className="login"
+              onClick={() => {
+                console.log("Button clicked");
+                setBtnNameReact("Logout");
+              }}
+            >
+              <i className="fa-solid fa-right-to-bracket icons login"></i>
+              {btnNameReact}
             </a>
           </li>
           <li>
