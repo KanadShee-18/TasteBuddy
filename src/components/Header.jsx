@@ -32,8 +32,9 @@ const Header = () => {
               href="#login"
               className="login"
               onClick={() => {
-                console.log("Button clicked");
-                setBtnNameReact("Logout");
+                btnNameReact === "Login"
+                  ? setBtnNameReact("Logout")
+                  : setBtnNameReact("Login");
               }}
             >
               <i className="fa-solid fa-right-to-bracket icons login"></i>

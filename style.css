@@ -27,13 +27,14 @@
 #nav-items {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   box-sizing: border-box;
 }
 
 #sidemenu {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  /* align-items: center; */
+  /* justify-content: space-evenly; */
 }
 
 #sidemenu li {
@@ -165,11 +166,30 @@
   color: rgb(19, 167, 19);
 }
 
+.shimmerFoodimgContainer,
 .shimmerContainer {
-  margin: 0px 200px;
+  margin: 0px 150px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.shimmer-heading {
+  margin-left: 150px;
+  display: flex;
+  justify-content: flex-start;
+  width: 500px;
+  height: 45px;
+  background-color: #cfcfcf;
+  border-radius: 10px;
+}
+
+.shimmer-food {
+  margin: 20px 10px;
+  width: 140px;
+  height: 176px;
+  background-color: #cfcfcf;
+  border-radius: 70px;
 }
 
 .shimmer-card {
