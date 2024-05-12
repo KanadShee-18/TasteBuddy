@@ -169,6 +169,7 @@
   margin: 0px 200px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .shimmer-card {

@@ -16,10 +16,11 @@ const Body = () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
-
     const json = await data.json();
-
     console.log(json);
+
+    // Optional Chaining:
+
     setImageOfFood(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
     setListOfTopRes(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -29,15 +30,20 @@ const Body = () => {
     );
   };
 
-  if (
-    listOfTopRes.length === 0 ||
-    listOfRestaurants.length === 0 ||
-    imageOfFoods.length === 0
-  ) {
-    return <Shimmer />;
-  }
+  // Conditional Rendering:
+  // if (
+  //   listOfTopRes.length === 0 ||
+  //   listOfRestaurants.length === 0 ||
+  //   imageOfFoods.length === 0
+  // ) {
+  //   return <Shimmer />;
+  // }
 
-  return (
+  return listOfTopRes.length === 0 ||
+    listOfRestaurants.length === 0 ||
+    imageOfFoods.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="main">
       <h2 className="woym_heading">What's on your mind?</h2>
       <div className="foodContainer">
