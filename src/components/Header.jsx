@@ -42,11 +42,6 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <a href="#signup" className="signup">
-              <i className="fa-solid fa-user-plus icons signup"></i>Signup
-            </a>
-          </li>
-          <li>
             <a href="#yourcart" className="cart">
               <i className="fa-solid fa-cart-shopping icons cart"></i>Cart
             </a>

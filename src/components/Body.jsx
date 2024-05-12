@@ -7,6 +7,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [imageOfFoods, setImageOfFood] = useState([]);
   const [listOfTopRes, setListOfTopRes] = useState([]);
+  const [filteredTopRes, setFilteredTopRes] = useState([]);
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
   useEffect(() => {
@@ -18,12 +19,15 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    // console.log(json);
+    console.log(json);
 
     // Optional Chaining:
 
     setImageOfFood(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
     setListOfTopRes(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredTopRes(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setListOfRestaurants(
@@ -46,25 +50,6 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="main">
-      <div className="searchBox">
-        <input
-          type="text"
-          placeholder="Search your fav food"
-          value={searchText}
-          onChange={(event) => {
-            setSearchText(event.target.value);
-          }}
-        />
-        <button
-          className="searchBtn"
-          onClick={() => {
-            // Filter restaurants according to search and update the UI
-            console.log(searchText);
-          }}
-        >
-          Search
-        </button>
-      </div>
       <h2 className="woym_heading">What's on your mind?</h2>
       <div className="foodContainer">
         {imageOfFoods.map((eachFoodItem) => (
@@ -75,21 +60,48 @@ const Body = () => {
       <h2 className="restaurantChainHeading">
         Top restaurant chains in Kolkata
       </h2>
-      <div className="filterBtn">
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredTopRes = listOfTopRes.filter(
-              (topRes) => topRes.info.avgRating >= 4
-            );
-            setListOfTopRes(filteredTopRes);
-          }}
-        >
-          Top Rated &gt;= 4 Star
-        </button>
+      <div className="filters">
+        <div className="filterBtn">
+          <button
+            className="filter-btn"
+            onClick={() => {
+              const filteredTopRes = listOfTopRes.filter(
+                (topRes) => topRes.info.avgRating >= 4
+              );
+              setListOfTopRes(filteredTopRes);
+            }}
+          >
+            Top Rated
+          </button>
+        </div>
+        <div className="searchBox">
+          <input
+            type="text"
+            placeholder="Search your fav food"
+            value={searchText}
+            onChange={(event) => {
+              setSearchText(event.target.value);
+            }}
+          />
+          <button
+            className="searchBtn"
+            onClick={() => {
+              // Filter restaurants according to search and update the UI
+              console.log(searchText);
+              const filterRes = listOfTopRes.filter((eachData) =>
+                eachData.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase())
+              );
+              setFilteredTopRes(filterRes);
+            }}
+          >
+            Search
+          </button>
+        </div>
       </div>
       <div className="restaurantChainContainer">
-        {listOfTopRes.map((eachRestaurant) => (
+        {filteredTopRes.map((eachRestaurant) => (
           <RestaurantCard
             key={eachRestaurant.info.id}
             restaurantData={eachRestaurant}
@@ -109,7 +121,7 @@ const Body = () => {
             setListOfRestaurants(filteredList);
           }}
         >
-          Top Rated &gt;4star
+          Top Rated
         </button>
       </div>
       <div className="allRestaurantContainer">
