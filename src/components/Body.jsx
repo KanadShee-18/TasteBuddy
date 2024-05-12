@@ -19,14 +19,22 @@ const Body = () => {
     const json = await data.json();
 
     console.log(json);
-    setImageOfFood(json.data.cards[0].card.card.imageGridCards.info);
+    setImageOfFood(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
     setListOfTopRes(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setListOfRestaurants(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (
+    listOfTopRes.length === 0 ||
+    listOfRestaurants.length === 0 ||
+    imageOfFoods.length === 0
+  ) {
+    return <h1>Loading ...</h1>;
+  }
 
   return (
     <div className="main">

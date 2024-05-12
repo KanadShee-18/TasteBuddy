@@ -127,7 +127,7 @@
   border-radius: 15px;
   overflow: hidden;
   transition: 0.2s ease;
-  background-color: #f0f1fa;
+  background-color: #ffff;
 }
 
 .res-card:hover {
