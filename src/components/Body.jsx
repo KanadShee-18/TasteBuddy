@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
+  const [searchText, setSearchText] = useState("");
   const [imageOfFoods, setImageOfFood] = useState([]);
   const [listOfTopRes, setListOfTopRes] = useState([]);
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -45,6 +46,25 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="main">
+      <div className="searchBox">
+        <input
+          type="text"
+          placeholder="Search your fav food"
+          value={searchText}
+          onChange={(event) => {
+            setSearchText(event.target.value);
+          }}
+        />
+        <button
+          className="searchBtn"
+          onClick={() => {
+            // Filter restaurants according to search and update the UI
+            console.log(searchText);
+          }}
+        >
+          Search
+        </button>
+      </div>
       <h2 className="woym_heading">What's on your mind?</h2>
       <div className="foodContainer">
         {imageOfFoods.map((eachFoodItem) => (

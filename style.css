@@ -60,6 +60,40 @@
   margin: 0px 7px;
 }
 
+.searchBox {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.searchBox input {
+  width: 350px;
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.searchBtn {
+  margin-left: 10px;
+  width: 70px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.searchBtn:hover {
+  /* border: none; */
+  background-color: black;
+  color: white;
+  scale: 0.96;
+}
+
 .main {
   margin: 0px 170px;
 }
