@@ -1,20 +1,38 @@
 import RestaurantCard from "./RestaurantCards";
 import Banner from "./Banner";
-import { useState } from "react";
-import { restaurantsObj } from "../utills/mockData";
-import { allRestaurantsList } from "../utills/mockData";
-import { info } from "../utills/mockData";
+import { useEffect, useState } from "react";
 
 const Body = () => {
-  const [listOfTopRes, setListOfTopRes] = useState(restaurantsObj);
-  const [listOfRestaurants, setListOfRestaurants] =
-    useState(allRestaurantsList);
+  const [imageOfFoods, setImageOfFood] = useState([]);
+  const [listOfTopRes, setListOfTopRes] = useState([]);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    const json = await data.json();
+
+    console.log(json);
+    setImageOfFood(json.data.cards[0].card.card.imageGridCards.info);
+    setListOfTopRes(
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setListOfRestaurants(
+      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    );
+  };
 
   return (
     <div className="main">
       <h2 className="woym_heading">What's on your mind?</h2>
       <div className="foodContainer">
-        {info.map((eachFoodItem) => (
+        {imageOfFoods.map((eachFoodItem) => (
           <Banner key={eachFoodItem.id} foodData={eachFoodItem} />
         ))}
       </div>
