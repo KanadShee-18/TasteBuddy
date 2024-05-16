@@ -5,45 +5,48 @@ const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
   return (
-    <div id="header">
-      <div id="logo-container">
-        <img src={logoImg} className="logo"></img>
+    <div className="flex flex-wrap justify-between shadow-md mx-2 h-20 sticky top-0 z-10 bg-white">
+      <div>
+        <img
+          src={logoImg}
+          className="w-auto h-[70px] cursor-pointer mt-1 px-1"
+        ></img>
       </div>
-      <div id="nav-items">
-        <ul id="sidemenu">
-          <li>
-            <a href="#search" className="search">
-              <i className="fa-solid fa-magnifying-glass icons search-icon"></i>
+      <div className="flex justify-evenly items-center box-border mr-4">
+        <ul className="flex justify-center items-center">
+          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+            <a href="#search" className="search text-md font-[600]">
+              <i className="fa-solid fa-magnifying-glass icons search-icon px-1"></i>
               Search
             </a>
           </li>
-          <li>
-            <a href="#home" className="home">
-              <i className="fa-solid fa-house icons home"></i>Home
+          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+            <a href="#home" className="home text-md font-[600]">
+              <i className="fa-solid fa-house icons home px-1"></i>Home
             </a>
           </li>
-          <li>
-            <a href="#offers" className="offers">
-              <i className="fa-solid fa-tags icons offers"></i>Offers
+          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+            <a href="#offers" className="offers text-md font-[600]">
+              <i className="fa-solid fa-tags icons offers px-1"></i>Offers
             </a>
           </li>
-          <li>
+          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
             <a
               href="#login"
-              className="login"
+              className="login text-md font-[600]"
               onClick={() => {
                 btnNameReact === "Login"
                   ? setBtnNameReact("Logout")
                   : setBtnNameReact("Login");
               }}
             >
-              <i className="fa-solid fa-right-to-bracket icons login"></i>
+              <i className="fa-solid fa-right-to-bracket icons login px-1"></i>
               {btnNameReact}
             </a>
           </li>
-          <li>
-            <a href="#yourcart" className="cart">
-              <i className="fa-solid fa-cart-shopping icons cart"></i>Cart
+          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+            <a href="#yourcart" className="cart text-md font-[600]">
+              <i className="fa-solid fa-cart-shopping icons cart px-1"></i>Cart
             </a>
           </li>
         </ul>
