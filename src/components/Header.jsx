@@ -20,7 +20,7 @@ const Header = () => {
         ></img>
       </div>
       <div className="flex justify-evenly items-center box-border mr-4">
-        <ul className="flex justify-center items-center">
+        <ul className="flex justify-center items-center font-medium font-txtFont text-gray-800">
           <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
             <a href="#search" className="search text-md font-[600]">
               <i className="fa-solid fa-magnifying-glass icons search-icon px-1"></i>

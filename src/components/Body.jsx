@@ -113,7 +113,9 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="main my-2 mx-32">
-      <h2 className="woym_heading text-3xl mt-3">What's on your mind?</h2>
+      <h2 className="woym_heading text-3xl mt-3 font-txtFont font-md">
+        What's on your mind?
+      </h2>
       <div className="foodContainer mt-15 mx-10">
         <Slider {...settings}>
           {imageOfFoods.map((eachFoodItem) => (
@@ -122,7 +124,7 @@ const Body = () => {
         </Slider>
       </div>
       <div className="line1"></div>
-      <h2 className="restaurantChainHeading text-3xl">
+      <h2 className="restaurantChainHeading text-3xl mt-10">
         Top restaurant chains in Kolkata
       </h2>
       <div className="filters flex justify-start items-center px-3">
