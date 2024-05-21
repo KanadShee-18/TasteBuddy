@@ -1,8 +1,15 @@
 import logoImg from "./logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
+
+  // if no dependency array => useEffect is called in every render.
+  // if the dependency array is empty => [] => then useEffect will be called only in the initial render and just once.
+  // if we put something In the dependency array then it will be Only called When the dependency changes.
+  useEffect(() => {
+    console.log("useeffect called");
+  }, [btnNameReact]);
 
   return (
     <div className="flex flex-wrap justify-between shadow-md mx-2 h-20 sticky top-0 z-10 bg-white">
