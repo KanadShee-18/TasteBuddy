@@ -37,3 +37,8 @@
 - There're 2 important hooks
 - 1. useState() - Superpowerful State Variables in React - used to create state variable - maintain the state of the component
 - 2. useEffect()
+
+# 2 types Routing in Web Apps:
+
+- Client Side Routing
+- Server Side Routing

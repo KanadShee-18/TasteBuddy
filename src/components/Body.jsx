@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCards";
 import Banner from "./Banner";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -124,13 +125,13 @@ const Body = () => {
         </Slider>
       </div>
       <div className="line1"></div>
-      <h2 className="restaurantChainHeading text-3xl mt-10">
+      <h2 className="restaurantChainHeading text-3xl mt-10 font-txtFont font-semibold">
         Top restaurant chains in Kolkata
       </h2>
       <div className="filters flex justify-start items-center px-3">
         <div className="filterBtn">
           <button
-            className="filter-btn border border-none text-white bg-black rounded-xl w-[100px] h-10 px-2 "
+            className="filter-btn border border-none text-gray-200 font-semibold bg-gradient-to-r from-purple-500 to-pink-500 rounded-md w-[100px] h-10 px-2 hover:scale-110 duration-200"
             onClick={() => {
               const filteredTopRes = listOfTopRes.filter(
                 (topRes) => topRes.info.avgRating >= 4
@@ -149,10 +150,10 @@ const Body = () => {
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
-            className="border border-solid border-black rounded-xl w-[350px] h-10 px-3"
+            className="border border-solid border-black rounded-md w-[350px] h-10 px-3"
           />
           <button
-            className="searchBtn mx-2 border border-none text-white bg-black rounded-xl w-[70px] h-8 px-2 hover:bg-blue-950 active:bg-teal-950"
+            className="searchBtn mx-2 border border-none text-white bg-gradient-to-r from-blue-400 to-purple-500 rounded-md w-[70px] h-8 px-2 active:scale-y-110 duration-200"
             onClick={() => {
               // Filter restaurants according to search and update the UI
               console.log(searchText);
@@ -170,13 +171,15 @@ const Body = () => {
       </div>
       <div className="restaurantChainContainer mt-15 mx-2 flex flex-wrap justify-start">
         {filteredTopRes.map((eachRestaurant) => (
-          <RestaurantCard
+          <Link
             key={eachRestaurant.info.id}
-            restaurantData={eachRestaurant}
-          />
+            to={"/restaurants/" + eachRestaurant.info.id}
+          >
+            <RestaurantCard restaurantData={eachRestaurant} />
+          </Link>
         ))}
       </div>
-      <h2 className="allRestaurantListHeading text-3xl mt-2">
+      <h2 className="allRestaurantListHeading text-3xl mt-2 font-txtFont font-semibold">
         Restaurants with online food delivery in Kolkata
       </h2>
       <div className="filterBtn">
@@ -194,7 +197,9 @@ const Body = () => {
       </div>
       <div className="allRestaurantContainer mt-15 mx-2 flex flex-wrap justify-start">
         {listOfRestaurants.map((eachRes) => (
-          <RestaurantCard key={eachRes.info.id} restaurantData={eachRes} />
+          <Link key={eachRes.info.id} to={"/restaurants/" + eachRes.info.id}>
+            <RestaurantCard restaurantData={eachRes} />
+          </Link>
         ))}
       </div>
     </div>
