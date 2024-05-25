@@ -61,10 +61,10 @@ const RestaurantMenu = () => {
 
   return (
     <div className="menu lg:w-1/2 md:w-2/3 m-auto pt-5 sm:w-3/4">
-      <h1 className="resName text-2xl font-txtFont font-semibold pb-5">
+      <h1 className="resName w-full top-20 fixed text-2xl font-txtFont font-semibold pb-5 pt-5 bg-white z-auto">
         {name}
       </h1>
-      <div className="rounded-2xl p-4 bg-gradient-to-t from-gray-200 to-transparent">
+      <div className="rounded-2xl p-4 bg-gradient-to-t from-gray-200 to-transparent mt-14">
         <div className="w-full h-auto bg-white border-gray-200 rounded-2xl border border-solid p-4">
           <h3 className="resAbout text-xl font-txtFont font-medium">
             <i className="fa-solid fa-star-half-stroke pr-1 text-green-600"></i>
