@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utills/constants";
+import { MdDeliveryDining } from "react-icons/md";
 
 const RestaurantCard = (props) => {
   const { restaurantData } = props;
@@ -6,7 +7,7 @@ const RestaurantCard = (props) => {
     restaurantData?.info;
   const { deliveryTime } = restaurantData?.info.sla;
   return (
-    <div className="res-card cursor-pointer w-[273px] h-auto m-4 border-none rounded-xl bg-gray-200 hover:shadow-lg">
+    <div className="res-card cursor-pointer w-[273px] h-auto m-4 border-none rounded-xl ease-in-out hover:scale-105 duration-200">
       <img
         src={CDN_URL + cloudinaryImageId}
         alt="res-logo"

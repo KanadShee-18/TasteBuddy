@@ -150,7 +150,7 @@ const Body = () => {
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
-            className="border border-solid border-black rounded-md w-[350px] h-10 px-3"
+            className="border border-solid border-black rounded-md md:w-[350px] sm:w-[200px] h-10 px-3 "
           />
           <button
             className="searchBtn mx-2 border border-none text-white bg-gradient-to-r from-blue-400 to-purple-500 rounded-md w-[70px] h-8 px-2 active:scale-y-110 duration-200"

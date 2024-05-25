@@ -15,23 +15,23 @@ const Header = () => {
       </div>
       <div className="flex justify-evenly items-center box-border mr-4">
         <ul className="flex justify-center items-center font-medium font-txtFont text-gray-800">
-          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+          <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] md:flex sm:hidden">
             <a href="#search" className="search text-md font-[600]">
               <i className="fa-solid fa-magnifying-glass icons search-icon px-1"></i>
               Search
             </a>
           </li>
-          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+          <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] md:flex sm:hidden">
             <Link to="/" className="home text-md font-[600]">
               <i className="fa-solid fa-house icons home px-1"></i>Home
             </Link>
           </li>
-          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+          <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] md:flex sm:hidden">
             <Link to="/offers" className="offers text-md font-[600]">
               <i className="fa-solid fa-tags icons offers px-1"></i>Offers
             </Link>
           </li>
-          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+          <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d]">
             <Link
               to="/login"
               className="login text-md font-[600]"
@@ -46,7 +46,7 @@ const Header = () => {
               {btnNameReact}
             </Link>
           </li>
-          <li className="px-7 cursor-pointer hover:text-[#ff5d0d]">
+          <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d]">
             <Link
               to="/cart"
               className="cart text-md font-[600]"
