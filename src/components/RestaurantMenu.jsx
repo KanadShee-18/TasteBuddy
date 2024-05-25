@@ -83,12 +83,12 @@ const RestaurantMenu = () => {
             <p className="text-[14px] font-txtFont font-normal text-gray-500 mr-2">
               {areaName}
             </p>
-            <i className="fa-solid fa-caret-down mt-0.5 text-[#ff5d0d]"></i>
+            <i className="fa-solid fa-caret-down mt-0.5 text-[#ff5d0d] cursor-pointer"></i>
           </div>
-          <h2 className="text-[14px] font-txtFont font-medium pl-5 my-2 text-gray-900">
+          <p className="text-[14px] font-txtFont font-medium pl-5 my-2 text-gray-900 hover:underline underline-offset-2">
             <i className="fa-solid fa-timeline mr-2 text-gray-400"></i>
             {sla.slaString}
-          </h2>
+          </p>
           <div className="w-full h-0.5 bg-slate-100"></div>
           <div className="flex items-center mt-2">
             <MdDeliveryDining className="mr-2 text-gray-700 text-[25px]" />
