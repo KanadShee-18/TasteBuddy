@@ -27,8 +27,8 @@ const Header = () => {
             </Link>
           </li>
           <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] md:flex sm:hidden">
-            <Link to="/offers" className="offers text-md font-[600]">
-              <i className="fa-solid fa-tags icons offers px-1"></i>Offers
+            <Link to="/about" className="offers text-md font-[600]">
+              <i className="fa-solid fa-tags icons offers px-1"></i>About
             </Link>
           </li>
           <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d]">
