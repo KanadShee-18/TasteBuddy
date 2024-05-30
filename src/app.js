@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
+import Search from "./components/Search";
 import About from "./components/About";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
@@ -25,6 +26,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
       {
         path: "/about",
