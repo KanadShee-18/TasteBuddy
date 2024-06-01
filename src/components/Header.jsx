@@ -6,7 +6,7 @@ const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
   return (
-    <div className="header flex flex-wrap justify-between shadow-md mx-2 h-20 sticky top-0 z-10 bg-white">
+    <div className="header flex flex-wrap justify-between shadow-md mx-2 h-20 sticky top-0 z-20 bg-white">
       <div>
         <img
           src={logoImg}
