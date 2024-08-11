@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Search from "./components/Search";
-// import About from "./components/About";
+import About from "./components/About";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import ErrorComponent from "./components/ErrorComponent";
-import RestaurantMenu from "./components/RestaurantMenu";
+// import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
 
@@ -16,7 +16,8 @@ import Shimmer from "./components/Shimmer";
 // Dynamic Bundling
 // Lazy Loading
 
-const About = lazy(() => import("./components/About"));
+// const About = lazy(() => import("./components/About"));
+const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 
 const AppLayout = () => {
   return (
@@ -41,11 +42,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: (
-          <Suspense fallback={<Shimmer />}>
-            <About />
-          </Suspense>
-        ),
+        element: <About />,
       },
       {
         path: "/login",
@@ -57,7 +54,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurants/:resId",
-        element: <RestaurantMenu />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <RestaurantMenu />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <ErrorComponent />,
