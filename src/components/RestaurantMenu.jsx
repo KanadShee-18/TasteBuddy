@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_URL } from "../utills/constants";
 import RestaurantHeader from "./RestaurantHeader";
 import RestaurantDeals from "./RestaurantDeals";
 import RestaurantItems from "./RestaurantItems";
+import useRestaurantMenu from "../utills/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
 
   const stripHtmlTags = (html) => {
@@ -15,21 +14,10 @@ const RestaurantMenu = () => {
     return doc.body.textContent || "";
   };
 
-  useEffect(() => {
-    fetchMenu();
-  }, [resId]);
-
-  const fetchMenu = async () => {
-    try {
-      const data = await fetch(MENU_URL + resId);
-      const json = await data.json();
-      setResInfo(json?.data);
-    } catch (error) {
-      console.error("Error fetching menu data:", error);
-    }
-  };
+  const resInfo = useRestaurantMenu(resId);
 
   if (!resInfo) return <Shimmer />;
+  console.log("resInfo = ", resInfo);
 
   const {
     name,

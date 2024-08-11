@@ -1,5 +1,5 @@
 import User from "./User";
-import UserClass from "./UserClass";
+// import UserClass from "./UserClass";
 
 const About = () => {
   return (
@@ -17,12 +17,7 @@ const About = () => {
       <h2 className="text-sm font-txtFont text-balance px-4 text-gray-600 font-semibold mt-1">
         I, Kanad Shee, making this project just for learning purpose.
       </h2>
-      {/* <User name={"Kanad Shee"} location={"Kolkata"} contact={"@kanad_shee"} /> */}
-      <UserClass
-        name={"Kanad Shee"}
-        location={"Kolkata"}
-        contact={"+91-6254785456"}
-      />
+      <User name={"Kanad Shee"} location={"Kolkata"} contact={"@kanad_shee"} />
     </div>
   );
 };

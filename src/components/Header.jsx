@@ -1,9 +1,11 @@
 import logoImg from "./logo.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utills/useOnliineStatus";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
+  const onlineStatus = useOnlineStatus();
 
   return (
     <div className="header flex flex-wrap justify-between shadow-md mx-2 h-20 sticky top-0 z-20 bg-white">
@@ -15,6 +17,9 @@ const Header = () => {
       </div>
       <div className="flex justify-evenly items-center box-border mr-4">
         <ul className="flex justify-center items-center font-medium font-txtFont text-gray-800">
+          <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] md:flex sm:hidden">
+            OnlineStatus: {onlineStatus ? "✅" : "🔴"}
+          </li>
           <li className="md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] md:flex sm:hidden">
             <Link to="/search" className="search text-md font-[600]">
               <i className="fa-solid fa-magnifying-glass icons search-icon px-1"></i>

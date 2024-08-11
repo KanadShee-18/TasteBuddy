@@ -16,7 +16,7 @@ const RestaurantItems = ({ itemCards }) =>
               <div className="flex flex-wrap justify-between">
                 <div className="w-8/12">
                   <div className="flex flex-wrap">
-                    <img className="h-[24px] pr-3" src={vegImg} alt="img" />
+                    {/* <img className="h-[24px] pr-3" src={vegImg} alt="img" /> */}
                     <MdStars className="text-[22px] text-[#ff5d0d]" />
                     <img className="h-[22px]" src={BSImg} alt="img" />
                   </div>

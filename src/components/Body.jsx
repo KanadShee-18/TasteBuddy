@@ -6,77 +6,18 @@ import Shimmer from "./Shimmer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useOnlineStatus from "../utills/useOnliineStatus";
+import useFetchRestaurants from "../utills/useFetchRestaurants";
+import { SampleNextArrow, SamplePrevArrow } from "../utills/slickArrows";
+import Offline from "./Offline";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
-  const [imageOfFoods, setImageOfFood] = useState([]);
-  const [listOfTopRes, setListOfTopRes] = useState([]);
-  const [filteredTopRes, setFilteredTopRes] = useState([]);
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          background: "#ff5d0d",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          background: "#ff5d0d",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  const fetchData = async () => {
-    const data = await fetch(
+  const { imageOfFoods, listOfTopRes, filteredTopRes, listOfRestaurants } =
+    useFetchRestaurants(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
-    const json = await data.json();
-    console.log(json);
-
-    // Optional Chaining:
-
-    setImageOfFood(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-    setListOfTopRes(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredTopRes(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setListOfRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  };
-
-  // Conditional Rendering:
-  // if (
-  //   listOfTopRes.length === 0 ||
-  //   listOfRestaurants.length === 0 ||
-  //   imageOfFoods.length === 0
-  // ) {
-  //   return <Shimmer />;
-  // }
 
   var settings = {
     dots: false,
@@ -107,6 +48,10 @@ const Body = () => {
       },
     ],
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) return <Offline />;
 
   return listOfTopRes.length === 0 ||
     listOfRestaurants.length === 0 ||
