@@ -6,7 +6,7 @@ export function SampleNextArrow(props) {
       style={{
         ...style,
         display: "block",
-        background: "#ff5d0d",
+        background: "#b5b2aa",
       }}
       onClick={onClick}
     />
@@ -21,7 +21,7 @@ export function SamplePrevArrow(props) {
       style={{
         ...style,
         display: "block",
-        background: "#ff5d0d",
+        background: "#b5b2aa",
       }}
       onClick={onClick}
     />

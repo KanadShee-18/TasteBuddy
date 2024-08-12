@@ -130,10 +130,10 @@ const Body = () => {
           <button
             className="filter-btn border border-none text-gray-200 font-semibold bg-gradient-to-r from-purple-500 to-pink-500 rounded-md w-[100px] h-10 px-2 hover:scale-110 duration-200"
             onClick={() => {
-              const filteredTopRes = listOfTopRes.filter(
-                (topRes) => topRes.info.avgRating >= 4
+              const topRatedRestaurants = listOfTopRes.filter(
+                (topRes) => topRes.info.avgRating >= 4.5
               );
-              setListOfTopRes(filteredTopRes);
+              setFilteredTopRes(topRatedRestaurants); // Update the filtered list, not the original list
             }}
           >
             Top Rated
@@ -148,7 +148,7 @@ const Body = () => {
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
-            className="w-full px-2 border-none outline-none font-txtFont text-base"
+            className="w-full px-2 border-none outline-none text-center font-txtFont text-base"
           />
           <button
             className="searchBtn mx-2 border border-none text-white bg-gradient-to-r from-blue-400 to-purple-500 rounded-md w-[70px] h-8 px-2 active:scale-y-110 duration-200"
