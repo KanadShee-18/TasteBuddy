@@ -11,7 +11,10 @@ const RestaurantCard = (props) => {
       <img
         src={CDN_URL + cloudinaryImageId}
         alt="res-logo"
-        className="res-logo w-full h-44 object-cover rounded-xl "
+        className="res-logo w-full h-44 object-cover rounded-xl"
+        style={{
+          boxShadow: "inset 0 -20px 20px -10px rgba(0, 0, 0, 0.6)",
+        }}
       ></img>
       <div className="card-info px-2 font-txtFont">
         <h3 className="font-semibold text-lg text-nowrap overflow-hidden text-ellipsis">

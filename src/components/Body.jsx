@@ -110,7 +110,7 @@ const Body = () => {
     imageOfFoods.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="main my-2 mx-32">
+    <div className="main my-2 mx-[calc(10%+36px)]">
       <h2 className="woym_heading text-3xl mt-3 font-txtFont font-md">
         What's on your mind?
       </h2>
@@ -196,7 +196,7 @@ const Body = () => {
           Top Rated
         </button>
       </div>
-      <div className="allRestaurantContainer mt-15 mx-2 flex flex-wrap justify-start">
+      <div className="allRestaurantContainer mt-15 mx-2 flex flex-wrap justify-evenly">
         {listOfRestaurants.map((eachRes) => (
           <Link key={eachRes.info.id} to={"/restaurants/" + eachRes.info.id}>
             <RestaurantCard restaurantData={eachRes} />

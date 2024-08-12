@@ -113,7 +113,7 @@ const Header = () => {
               <i className="fa-solid fa-cart-shopping icons cart px-1"></i>Cart
             </Link>
           </li>
-          <li className="px-4">{loggedInUser}</li>
+          {/* <li className="px-4">{loggedInUser}</li> */}
         </ul>
       </div>
     </div>
