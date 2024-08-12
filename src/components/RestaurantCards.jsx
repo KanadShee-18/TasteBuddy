@@ -12,9 +12,6 @@ const RestaurantCard = (props) => {
         src={CDN_URL + cloudinaryImageId}
         alt="res-logo"
         className="res-logo w-full h-44 object-cover rounded-xl"
-        style={{
-          boxShadow: "inset 0 -20px 20px -10px rgba(0, 0, 0, 0.6)",
-        }}
       ></img>
       <div className="card-info px-2 font-txtFont">
         <h3 className="font-semibold text-lg text-nowrap overflow-hidden text-ellipsis">
@@ -49,7 +46,7 @@ export const withOfferCards = (RestaurantCard) => {
 
     return (
       <div className="relative hover:scale-105 duration-200">
-        <span className="absolute z-10 left-4 top-1/2 -my-4 bg-transparent text-[#f4f4f4] text-2xl font-extrabold font-txtFont px-2 py-1 rounded-md drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+        <span className="absolute w-[273px] z-10 left-4 top-1/2 -my-4 text-[#f4f4f4] text-2xl bg-gradient-to-t from-slate-600 to-transparent font-extrabold font-txtFont px-2 pt-3 rounded-md drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
           {header} {subHeader}
         </span>
         <RestaurantCard {...props} />
