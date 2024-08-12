@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCards";
+import RestaurantCard, { withOfferCards } from "./RestaurantCards";
 import Banner from "./Banner";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,37 +13,89 @@ import Offline from "./Offline";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
+  const RestaurantCardWithOffer = withOfferCards(RestaurantCard);
 
-  const { imageOfFoods, listOfTopRes, filteredTopRes, listOfRestaurants } =
-    useFetchRestaurants(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+  const {
+    imageOfFoods,
+    listOfTopRes,
+    filteredTopRes,
+    listOfRestaurants,
+    setFilteredTopRes,
+    setListOfTopRes,
+    setListOfRestaurants,
+  } = useFetchRestaurants(
+    "https://foodfire.onrender.com/api/restaurants?lat=18.9486&lng=72.83662&page_type=DESKTOP_WEB_LISTING"
+  );
+
+  console.log("Body rendered", filteredTopRes);
 
   var settings = {
     dots: false,
     infinite: true,
     speed: 900,
-    slidesToShow: 8,
-    slidesToScroll: 3,
+    slidesToShow: 7,
+    slidesToScroll: 4,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 900,
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 1150,
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
+  var restaurantSettings = {
+    dots: false,
+    infinite: true,
+    speed: 900,
+    slidesToShow: 4, // Default for large screens
+    slidesToScroll: 2,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1400, // large screens
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 1300,
+        breakpoint: 1200, // large screens
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 824, // Small screens
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 480, // Extra small screens
+        settings: {
+          slidesToShow: 1,
         },
       },
     ],
@@ -70,10 +122,10 @@ const Body = () => {
         </Slider>
       </div>
       <div className="line1"></div>
-      <h2 className="restaurantChainHeading text-3xl mt-10 font-txtFont font-semibold">
+      <h2 className="restaurantChainHeading text-2xl mt-10 mb-4 font-txtFont font-semibold">
         Top restaurant chains in Kolkata
       </h2>
-      <div className="filters flex justify-start items-center px-3">
+      <div className="flex flex-wrap items-center mb-3">
         <div className="filterBtn">
           <button
             className="filter-btn border border-none text-gray-200 font-semibold bg-gradient-to-r from-purple-500 to-pink-500 rounded-md w-[100px] h-10 px-2 hover:scale-110 duration-200"
@@ -87,7 +139,8 @@ const Body = () => {
             Top Rated
           </button>
         </div>
-        <div className="searchBox m-2 p-2">
+
+        <div className="w-2/3 h-[45px] ml-4 border-1 flex border-black rounded-md items-center shadow-lg md:w-2/6">
           <input
             type="text"
             placeholder="Search your fav food"
@@ -95,7 +148,7 @@ const Body = () => {
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
-            className="border border-solid border-black rounded-md md:w-[350px] sm:w-[200px] h-10 px-3 "
+            className="w-full px-2 border-none outline-none font-txtFont text-base"
           />
           <button
             className="searchBtn mx-2 border border-none text-white bg-gradient-to-r from-blue-400 to-purple-500 rounded-md w-[70px] h-8 px-2 active:scale-y-110 duration-200"
@@ -114,17 +167,20 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="restaurantChainContainer mt-15 mx-2 flex flex-wrap justify-start">
+      <Slider {...restaurantSettings}>
         {filteredTopRes.map((eachRestaurant) => (
-          <Link
-            key={eachRestaurant.info.id}
-            to={"/restaurants/" + eachRestaurant.info.id}
-          >
-            <RestaurantCard restaurantData={eachRestaurant} />
-          </Link>
+          <div key={eachRestaurant.info.id}>
+            <Link to={"/restaurants/" + eachRestaurant.info.id}>
+              {eachRestaurant.info?.aggregatedDiscountInfoV3 ? (
+                <RestaurantCardWithOffer restaurantData={eachRestaurant} />
+              ) : (
+                <RestaurantCard restaurantData={eachRestaurant} />
+              )}
+            </Link>
+          </div>
         ))}
-      </div>
-      <h2 className="allRestaurantListHeading text-3xl mt-2 font-txtFont font-semibold">
+      </Slider>
+      <h2 className="allRestaurantListHeading text-2xl mt-2 font-txtFont font-semibold">
         Restaurants with online food delivery in Kolkata
       </h2>
       <div className="filterBtn">

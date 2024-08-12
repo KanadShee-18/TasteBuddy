@@ -43,7 +43,7 @@ const RestaurantHeader = ({
         <div className="flex items-center mt-2">
           <MdDeliveryDining className="mr-2 text-gray-700 text-[25px]" />
           <p className="font-txtFont text-gray-500 font-normal text-sm">
-            {enrichedText}
+            {sla.lastMileTravelString}
           </p>
         </div>
       </div>

@@ -42,6 +42,7 @@ const useFetchRestaurants = (url) => {
     filteredTopRes,
     listOfRestaurants,
     setFilteredTopRes,
+    setListOfTopRes,
     setListOfRestaurants,
     loading,
   };

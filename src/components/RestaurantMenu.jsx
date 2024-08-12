@@ -5,9 +5,14 @@ import RestaurantHeader from "./RestaurantHeader";
 import RestaurantDeals from "./RestaurantDeals";
 import RestaurantItems from "./RestaurantItems";
 import useRestaurantMenu from "../utills/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const [showIndex, setShowIndex] = useState(0);
 
   const stripHtmlTags = (html) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
@@ -30,9 +35,14 @@ const RestaurantMenu = () => {
     expectationNotifiers,
   } = resInfo?.cards?.[2]?.card?.card?.info || {};
 
-  const itemCards =
-    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
-      ?.card?.itemCards || [];
+  console.log(resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+  const categories =
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (cat) =>
+        cat.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    ) || [];
 
   const itemDeals =
     resInfo?.cards?.[3]?.card?.card?.gridElements?.infoWithStyle?.offers || [];
@@ -54,7 +64,14 @@ const RestaurantMenu = () => {
         enrichedText={enrichedText}
       />
       <RestaurantDeals itemDeals={itemDeals} />
-      <RestaurantItems itemCards={itemCards} />
+      {categories.map((c, index) => (
+        // Controlled Component
+        <RestaurantCategory
+          key={c?.card?.card?.title}
+          data={c?.card?.card}
+          isExpanded={index === showIndex && true}
+        />
+      ))}
     </div>
   );
 };
