@@ -1,16 +1,22 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { IMAGE_URL } from "../utills/constants";
+import rollImg from "../Images/cart_dish.png";
 
 const Cart = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+  let totalBill = 0;
+
   return (
     <div className="flex flex-col md:flex-row bg-neutral-200 p-4 min-h-screen px-[calc(10%)] font-txtFont">
       {/* Left Side: Account, Delivery Address, Payment */}
-      <div className="flex flex-col w- md:w-2/3 bg-transparent p-4 shadow-md rounded-sm">
+      <div className="flex flex-col w-full md:w-2/3 bg-transparent p-4 shadow-md rounded-sm">
         {/* Account Section */}
-        <div className="flex items-start mb-8 bg-white px-8 py-10 relative">
+        <div className="flex justify-between items-start mb-8 bg-white px-8 py-10 relative">
           <span className="flex justify-center absolute top-1/4 -left-7 bg-[#282c3f]">
             <i className="fa-solid fa-user text-xl text-slate-200 p-2"></i>
           </span>
-          <div className="w-11/12">
+          <div className="w-8/12">
             <h2 className="text-md font-semibold">Account</h2>
             <p className="text-gray-600 text-sm">
               To place your order now, log in to your existing account or sign
@@ -27,6 +33,9 @@ const Cart = () => {
               </button>
             </div>
           </div>
+          <div>
+            <img src={rollImg} alt="" />
+          </div>
         </div>
 
         {/* Delivery Address Section */}
@@ -41,9 +50,6 @@ const Cart = () => {
 
         {/* Payment Section */}
         <div className="flex items-start bg-white px-6 py-9 text-slate-700 relative">
-          {/* <div className="w-1/12 flex justify-center">
-            <i className="fa-solid fa-wallet text-2xl text-gray-600"></i>
-          </div> */}
           <span className="flex justify-center absolute top-1/4 -left-7 bg-white border-black rounded-sm shadow-[0px_2px_8px_0px_#718096]">
             <i className="fa-solid fa-wallet text-xl text-neutral-800 p-3"></i>
           </span>
@@ -55,58 +61,61 @@ const Cart = () => {
 
       {/* Right Side: Order Summary */}
       <div className="w-full md:w-1/3 bg-white p-4 mt-4 ml-4 shadow-md rounded-sm h-auto">
-        {/* Restaurant Info */}
-        <div className="flex justify-between items-center border-b pb-4 mb-4">
-          <div>
-            <h2 className="text-md font-semibold">Burger King</h2>
-            <p className="text-gray-600 text-sm">Kasba</p>
-          </div>
-          <img
-            src="/path/to/image.jpg"
-            alt="Restaurant Logo"
-            className="w-16 h-16 rounded-full object-cover"
-          />
-        </div>
+        {cartItems.length > 0 ? (
+          <>
+            {/* Restaurant Info */}
+            <div className="flex justify-between items-center border-b pb-4 mb-4">
+              <div>
+                <h2 className="text-md font-semibold">Burger King</h2>
+                <p className="text-gray-600 text-sm">Kasba</p>
+              </div>
+              <img
+                src={IMAGE_URL + cartItems[0].card.info.imageId}
+                alt="Restaurant Logo"
+                className="w-16 h-16 object-cover"
+              />
+            </div>
 
-        {/* Order Item */}
-        <div className="flex justify-between items-center mb-4 flex-col">
-          <div>
-            <p className="text-gray-800 text-sm">Crispy Veg Burger+Fries(M)</p>
-            <div className="flex items-center mt-2">
-              <button className="text-green-500 px-2">-</button>
-              <span className="px-4 text-sm">1</span>
-              <button className="text-green-500 px-2">+</button>
-            </div>
-          </div>
-          <p className="text-gray-800 text-sm">₹160</p>
-          <div>
-            <p className="text-gray-800 text-sm">Crispy Veg Burger+Fries(M)</p>
-            <div className="flex items-center mt-2">
-              <button className="text-green-500 px-2">-</button>
-              <span className="px-4 text-sm">1</span>
-              <button className="text-green-500 px-2">+</button>
-            </div>
-          </div>
-          <p className="text-gray-800 text-sm">₹160</p>
-          <div>
-            <p className="text-gray-800 text-sm">Crispy Veg Burger+Fries(M)</p>
-            <div className="flex items-center mt-2">
-              <button className="text-green-500 px-2">-</button>
-              <span className="px-4 text-sm">1</span>
-              <button className="text-green-500 px-2">+</button>
-            </div>
-          </div>
-          <p className="text-gray-800 text-sm">₹160</p>
-          <div>
-            <p className="text-gray-800 text-sm">Crispy Veg Burger+Fries(M)</p>
-            <div className="flex items-center mt-2">
-              <button className="text-green-500 px-2">-</button>
-              <span className="px-4 text-sm">1</span>
-              <button className="text-green-500 px-2">+</button>
-            </div>
-          </div>
-          <p className="text-gray-800 text-sm">₹160</p>
-        </div>
+            {cartItems.map((item, index) => {
+              // totalBill += item.card.info.price / 100;
+              {
+                item?.card?.info?.price
+                  ? (totalBill += item.card.info.price / 100)
+                  : (totalBill += item.card.info.defaultPrice / 100);
+              }
+              return (
+                <div
+                  key={index}
+                  className="flex justify-between items-center mb-4"
+                >
+                  <div>
+                    <p className="text-gray-800 text-sm">
+                      {item.card.info.name}
+                    </p>
+                    <div className="flex items-center mt-2">
+                      <button className="text-green-500 px-2">-</button>
+                      <span className="px-4 text-sm">1</span>
+                      <button className="text-green-500 px-2">+</button>
+                    </div>
+                  </div>
+                  {item?.card?.info?.price ? (
+                    <p className="text-gray-800 text-sm">
+                      {" "}
+                      ₹{item.card.info.price / 100}
+                    </p>
+                  ) : (
+                    <p className="text-gray-800 text-sm">
+                      {" "}
+                      ₹{item.card.info.defaultPrice / 100}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <p>Your cart is empty</p>
+        )}
 
         {/* Suggestions */}
         <div className="mb-4 drop-shadow-sm border-1 border-black rounded-md shadow-[0px_2px_8px_0px_#718096]">
@@ -130,7 +139,7 @@ const Cart = () => {
           <h3 className="text-md font-semibold">Bill Details</h3>
           <div className="flex justify-between mt-2">
             <p className="text-gray-600 text-sm">Item Total</p>
-            <p className="text-sm">₹349</p>
+            <p className="text-sm">₹{totalBill.toFixed(2)}</p>
           </div>
           <div className="flex justify-between mt-2">
             <p className="text-gray-600 text-sm">Delivery Fee 1.2 kms</p>
@@ -149,7 +158,7 @@ const Cart = () => {
         {/* Total Amount */}
         <div className="flex justify-between mt-4 pt-4 border-t-[3px] border-neutral-800 text-md font-bold">
           <p className="text-md">TO PAY</p>
-          <p className="text-md">₹451</p>
+          <p className="text-md">₹{(totalBill + 38 + 6 + 57.54).toFixed(2)}</p>
         </div>
 
         <div className="w-full h-3 bg-slate-200 mt-10"></div>

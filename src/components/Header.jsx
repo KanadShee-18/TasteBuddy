@@ -108,11 +108,7 @@ const Header = () => {
                 : "hover:scale-95 duration-200"
             }`}
           >
-            <Link
-              to="/cart"
-              className="cart relative text-md font-[500]"
-              target="_blank"
-            >
+            <Link to="/cart" className="cart relative text-md font-[500]">
               <span className="cart-count absolute -top-3 left-0.5 text-xs bg-red-100 text-slate-800 rounded-b-2xl px-2">
                 {cartItems.length}
               </span>
