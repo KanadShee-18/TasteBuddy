@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utills/useOnliineStatus";
 import UserContext from "../utills/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
@@ -11,6 +12,10 @@ const Header = () => {
   // const onlineStatus = useOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
+
+  // Subscribing to the store using the Selector (hook in react)
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -35,9 +40,7 @@ const Header = () => {
         className={`md:flex items-center ${
           isOpen ? "block" : "hidden"
         } lg:shadow-none md:shadow-none md:static absolute top-20 right-0 ${
-          isOpen
-            ? "bg-gradient-to-r from-teal-100 to-slate-200 sm:shadow-lg rounded-md p-2"
-            : ""
+          isOpen ? "bg-slate-200 sm:shadow-lg rounded-md p-2" : ""
         }`}
       >
         <ul
@@ -50,7 +53,7 @@ const Header = () => {
                 : "hover:scale-95 duration-200"
             }`}
           >
-            <Link to="/search" className="search text-md font-[600]">
+            <Link to="/search" className="search text-md font-[500]">
               <i className="fa-solid fa-magnifying-glass icons search-icon px-1"></i>
               Search
             </Link>
@@ -62,7 +65,7 @@ const Header = () => {
                 : "hover:scale-95 duration-200"
             }`}
           >
-            <Link to="/" className="home text-md font-[600]">
+            <Link to="/" className="home text-md font-[500]">
               <i className="fa-solid fa-house icons home px-1"></i>Home
             </Link>
           </li>
@@ -73,7 +76,7 @@ const Header = () => {
                 : "hover:scale-95 duration-200"
             }`}
           >
-            <Link to="/about" className="offers text-md font-[600]">
+            <Link to="/about" className="offers text-md font-[500]">
               <i className="fa-solid fa-tags icons offers px-1"></i>About
             </Link>
           </li>
@@ -86,7 +89,7 @@ const Header = () => {
           >
             <Link
               to="/login"
-              className="login text-md font-[600]"
+              className="login text-md font-[500]"
               onClick={() => {
                 btnNameReact === "Login"
                   ? setBtnNameReact("Logout")
@@ -107,10 +110,14 @@ const Header = () => {
           >
             <Link
               to="/cart"
-              className="cart text-md font-[600]"
+              className="cart relative text-md font-[500]"
               target="_blank"
             >
-              <i className="fa-solid fa-cart-shopping icons cart px-1"></i>Cart
+              <span className="cart-count absolute -top-3 left-0.5 text-xs bg-red-100 text-slate-800 rounded-b-2xl px-2">
+                {cartItems.length}
+              </span>
+              <i className="fa-solid fa-box-open icons cart px-1"></i>
+              Cart
             </Link>
           </li>
           {/* <li className="px-4">{loggedInUser}</li> */}

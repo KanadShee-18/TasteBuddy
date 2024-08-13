@@ -16,6 +16,17 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   // const RestaurantCardWithOffer = withOfferCards(RestaurantCard);
 
+  // const {
+  //   imageOfFoods,
+  //   listOfTopRes,
+  //   filteredTopRes,
+  //   listOfRestaurants,
+  //   setFilteredTopRes,
+  //   setListOfTopRes,
+  //   setListOfRestaurants,
+  // } = useFetchRestaurants(
+  //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  // );
   const {
     imageOfFoods,
     listOfTopRes,
@@ -112,7 +123,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="main my-2 mx-[calc(10%+36px)]">
-      <h2 className="woym_heading text-3xl mt-3 font-txtFont font-md">
+      <h2 className="woym_heading text-2xl mt-3 font-txtFont font-md">
         What's on your mind?
       </h2>
       <div className="foodContainer mt-15 mx-10">

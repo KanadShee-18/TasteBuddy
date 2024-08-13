@@ -1,9 +1,18 @@
 // import { MdStars } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { IMAGE_URL } from "../utills/constants";
+import { addItem } from "../utills/cartSlice";
 
 const ItemList = ({ items, isExpanded }) => {
   console.log(items);
   console.log(isExpanded);
+
+  const dispatch = useDispatch(); // to get access to the dispatch function
+
+  const handleAddItem = (item) => {
+    // Dispatch an action
+    dispatch(addItem(item)); // here the data we are adding is the action payload
+  };
 
   return (
     <div>
@@ -38,7 +47,10 @@ const ItemList = ({ items, isExpanded }) => {
                 src={IMAGE_URL + item.card.info.imageId}
                 alt="img"
               />
-              <button className="border font-txtFont border-none absolute -bottom-5 left-7 text-green-600 text-lg font-semibold bg-gradient-to-r from-green-200 to-slate-100 rounded-md w-[100px] h-10 px-2 hover:scale-110 duration-200 active:bg-gradient-to-r active:from-green-500 active:to-slate-400 active:text-white">
+              <button
+                className="border font-txtFont border-none absolute -bottom-5 left-7 text-green-600 text-lg font-semibold bg-gradient-to-r from-green-200 to-slate-100 rounded-md w-[100px] h-10 px-2 hover:scale-110 duration-200 active:bg-gradient-to-r active:from-green-500 active:to-slate-400 active:text-white"
+                onClick={() => handleAddItem(item)}
+              >
                 ADD+
               </button>
             </div>

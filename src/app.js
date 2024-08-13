@@ -10,6 +10,8 @@ import ErrorComponent from "./components/ErrorComponent";
 // import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
+import { Provider } from "react-redux";
+import appStore from "./utills/appStore";
 
 // Chunking
 // Code Splitting
@@ -21,10 +23,12 @@ const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 
 const AppLayout = () => {
   return (
-    <div id="app">
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <div id="app">
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 
