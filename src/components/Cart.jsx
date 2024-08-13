@@ -1,11 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IMAGE_URL } from "../utills/constants";
 import rollImg from "../Images/cart_dish.png";
+import { addItem, clearCart } from "../utills/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   let totalBill = 0;
+
+  const dispatch = useDispatch();
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
   return (
     <div className="flex flex-col md:flex-row bg-neutral-200 p-4 min-h-screen px-[calc(10%)] font-txtFont">
@@ -114,16 +121,29 @@ const Cart = () => {
             })}
           </>
         ) : (
-          <p>Your cart is empty</p>
+          <p className="mb-4 text-center font-medium text-slate-600">
+            Your cart is empty 😥
+          </p>
         )}
 
         {/* Suggestions */}
-        <div className="mb-4 drop-shadow-sm border-1 border-black rounded-md shadow-[0px_2px_8px_0px_#718096]">
-          <input
-            type="text"
-            placeholder="''Any suggestions? We will pass it on..."
-            className="w-full p-2 border text-sm text-center border-none outline-none rounded-sm"
-          />
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-[60%] drop-shadow-sm border-1 border-black rounded-md shadow-[0px_2px_8px_0px_#718096] flex items-center justify-center">
+            <input
+              type="text"
+              placeholder="''Any suggestions? We will pass it on..."
+              className="w-full p-2 border text-sm text-center border-none outline-none rounded-sm"
+            />
+          </div>
+          <div className="flex justify-end w-[30%]">
+            <button
+              className="w-[100px] font-medium bg-orange-600 text-white py-2 rounded-sm hover:scale-95 duration-200 hover:bg-neutral-950 active:bg-orange-600"
+              onClick={handleClearCart}
+            >
+              {" "}
+              Clear
+            </button>
+          </div>
         </div>
 
         {/* No-contact Delivery Option */}
