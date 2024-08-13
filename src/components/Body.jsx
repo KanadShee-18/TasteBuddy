@@ -1,4 +1,5 @@
-import RestaurantCard, { withOfferCards } from "./RestaurantCards";
+// import RestaurantCard, { withOfferCards } from "./RestaurantCards";
+import RestaurantCard from "./RestaurantCards";
 import Banner from "./Banner";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,7 +14,7 @@ import Offline from "./Offline";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
-  const RestaurantCardWithOffer = withOfferCards(RestaurantCard);
+  // const RestaurantCardWithOffer = withOfferCards(RestaurantCard);
 
   const {
     imageOfFoods,
@@ -68,20 +69,20 @@ const Body = () => {
   var restaurantSettings = {
     dots: false,
     infinite: true,
-    speed: 900,
-    slidesToShow: 4, // Default for large screens
+    speed: 600,
+    slidesToShow: 4, // Adjust based on screen size
     slidesToScroll: 2,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1400, // large screens
+        breakpoint: 1400, // Adjust for large screens
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 1200, // large screens
+        breakpoint: 1200, // Adjust for medium screens
         settings: {
           slidesToShow: 2,
         },
@@ -167,7 +168,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <Slider {...restaurantSettings}>
+      {/* <Slider {...restaurantSettings}>
         {filteredTopRes.map((eachRestaurant) => (
           <div key={eachRestaurant.info.id}>
             <Link to={"/restaurants/" + eachRestaurant.info.id}>
@@ -176,6 +177,15 @@ const Body = () => {
               ) : (
                 <RestaurantCard restaurantData={eachRestaurant} />
               )}
+            </Link>
+          </div>
+        ))}
+      </Slider> */}
+      <Slider {...restaurantSettings}>
+        {filteredTopRes.map((eachRestaurant) => (
+          <div key={eachRestaurant.info.id}>
+            <Link to={"/restaurants/" + eachRestaurant.info.id}>
+              <RestaurantCard restaurantData={eachRestaurant} />
             </Link>
           </div>
         ))}

@@ -1,4 +1,4 @@
-import { MdStars } from "react-icons/md";
+// import { MdStars } from "react-icons/md";
 import { IMAGE_URL } from "../utills/constants";
 
 const ItemList = ({ items, isExpanded }) => {
