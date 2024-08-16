@@ -4,13 +4,15 @@ import Banner from "./Banner";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useOnlineStatus from "../utills/useOnliineStatus";
 import useFetchRestaurants from "../utills/useFetchRestaurants";
-import { SampleNextArrow, SamplePrevArrow } from "../utills/slickArrows";
+
 import Offline from "./Offline";
+import Slider from "./Slider";
+import TopResSlider from "./TopResSlider";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -41,78 +43,6 @@ const Body = () => {
 
   console.log("Body rendered", filteredTopRes);
 
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 900,
-    slidesToShow: 7,
-    slidesToScroll: 4,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 5,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
-  var restaurantSettings = {
-    dots: false,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 4, // Adjust based on screen size
-    slidesToScroll: 2,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1400, // Adjust for large screens
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 1200, // Adjust for medium screens
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 824, // Small screens
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 480, // Extra small screens
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
   const onlineStatus = useOnlineStatus();
 
   if (onlineStatus === false) return <Offline />;
@@ -126,13 +56,9 @@ const Body = () => {
       <h2 className="woym_heading text-2xl mt-3 font-txtFont font-md">
         What's on your mind?
       </h2>
-      <div className="foodContainer mt-15 mx-10">
-        <Slider {...settings}>
-          {imageOfFoods.map((eachFoodItem) => (
-            <Banner key={eachFoodItem.id} foodData={eachFoodItem} />
-          ))}
-        </Slider>
-      </div>
+
+      <Slider data={imageOfFoods} />
+
       <div className="line1"></div>
       <h2 className="restaurantChainHeading text-2xl mt-10 mb-4 font-txtFont font-semibold">
         Top restaurant chains in Kolkata
@@ -183,24 +109,13 @@ const Body = () => {
         {filteredTopRes.map((eachRestaurant) => (
           <div key={eachRestaurant.info.id}>
             <Link to={"/restaurants/" + eachRestaurant.info.id}>
-              {eachRestaurant.info?.aggregatedDiscountInfoV3 ? (
-                <RestaurantCardWithOffer restaurantData={eachRestaurant} />
-              ) : (
-                <RestaurantCard restaurantData={eachRestaurant} />
-              )}
-            </Link>
-          </div>
-        ))}
-      </Slider> */}
-      <Slider {...restaurantSettings}>
-        {filteredTopRes.map((eachRestaurant) => (
-          <div key={eachRestaurant.info.id}>
-            <Link to={"/restaurants/" + eachRestaurant.info.id}>
               <RestaurantCard restaurantData={eachRestaurant} />
             </Link>
           </div>
         ))}
-      </Slider>
+      </Slider> */}
+      <TopResSlider data={filteredTopRes} />
+
       <h2 className="allRestaurantListHeading text-2xl mt-2 font-txtFont font-semibold">
         Restaurants with online food delivery in Kolkata
       </h2>

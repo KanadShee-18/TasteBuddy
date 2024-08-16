@@ -11,7 +11,7 @@ const RestaurantCard = (props) => {
   const subHeader = offerData?.subHeader;
 
   return (
-    <div className="res-card cursor-pointer w-[273px] h-[300px] m-4 border-none rounded-xl ease-in-out hover:scale-105 duration-200 relative">
+    <div className="res-card inline-block cursor-pointer w-[273px] h-[300px] m-4 border-none rounded-xl ease-in-out hover:scale-105 duration-200 relative">
       <div className="relative w-full h-44">
         <img
           src={CDN_URL + cloudinaryImageId}

@@ -122,7 +122,7 @@ const Cart = () => {
           </>
         ) : (
           <p className="mb-4 text-center font-medium text-slate-600">
-            Your cart is empty 😥
+            😥Your cart is empty. Add items!
           </p>
         )}
 
@@ -163,22 +163,22 @@ const Cart = () => {
           </div>
           <div className="flex justify-between mt-2">
             <p className="text-gray-600 text-sm">Delivery Fee 1.2 kms</p>
-            <p className="text-sm">₹38</p>
+            <p className="text-sm">₹20</p>
           </div>
           <div className="flex justify-between mt-2">
-            <p className="text-gray-600 text-md">Platform fee</p>
+            <p className="text-gray-600 text-sm">Platform fee</p>
             <p className="text-sm">₹6</p>
           </div>
           <div className="flex justify-between mt-2">
-            <p className="text-gray-600 text-md">GST and Restaurant Charges</p>
-            <p className="text-sm">₹57.54</p>
+            <p className="text-gray-600 text-sm">GST and Restaurant Charges</p>
+            <p className="text-sm">₹27.54</p>
           </div>
         </div>
 
         {/* Total Amount */}
         <div className="flex justify-between mt-4 pt-4 border-t-[3px] border-neutral-800 text-md font-bold">
           <p className="text-md">TO PAY</p>
-          <p className="text-md">₹{(totalBill + 38 + 6 + 57.54).toFixed(2)}</p>
+          <p className="text-md">₹{(totalBill + 20 + 6 + 27.54).toFixed(2)}</p>
         </div>
 
         <div className="w-full h-3 bg-slate-200 mt-10"></div>
