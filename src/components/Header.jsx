@@ -44,7 +44,7 @@ const Header = () => {
         }`}
       >
         <ul
-          className={`flex flex-col md:flex-row md:items-center md:justify-between font-medium font-txtFont text-gray-800`}
+          className={`flex flex-col md:flex-row md:items-center md:justify-around font-medium font-txtFont text-gray-800`}
         >
           <li
             className={`md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] ${
@@ -65,7 +65,7 @@ const Header = () => {
                 : "hover:scale-95 duration-200"
             }`}
           >
-            <Link to="/" className="home text-md font-[500]">
+            <Link to="/home" className="home text-md font-[500]">
               <i className="fa-solid fa-house icons home px-1"></i>Home
             </Link>
           </li>
@@ -87,8 +87,8 @@ const Header = () => {
                 : "hover:scale-95 duration-200"
             }`}
           >
-            <Link
-              to="/login"
+            {/* <Link
+              to="/"
               className="login text-md font-[500]"
               onClick={() => {
                 btnNameReact === "Login"
@@ -99,7 +99,7 @@ const Header = () => {
             >
               <i className="fa-solid fa-right-to-bracket icons login px-1"></i>
               {btnNameReact}
-            </Link>
+            </Link> */}
           </li>
           <li
             className={`md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] ${

@@ -1,81 +1,81 @@
-const Login = () => {
+import { RxCross2 } from "react-icons/rx";
+import CART_DISH from "../Images/cart_dish.png";
+import { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { Link } from "react-router-dom";
+
+const Login = (props) => {
+  const [phone, setPhone] = useState("");
+  const { setLoginModel } = props;
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Sign in to your account
-        </h2>
-      </div>
+    <div
+      className="relative z-50"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
+        aria-hidden="true"
+      ></div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Email address
-            </label>
-            <div className="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
-            </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          <div>
+      <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="flex min-h-full items-end justify-end p-4 text-center sm:items-center sm:p-0">
+          <div className="p-10 relative transform overflow-hidden bg-white text-left h-screen shadow-xl transition-all sm:w-4/12 sm:max-w-lg">
             <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={() => setLoginModel(false)}
+              className="bg-slate-300 p-2 rounded-3xl text-2xl text-slate-700 font-semibold hover:bg-slate-500 hover:text-white hover:font-bold"
             >
-              Sign in
+              <RxCross2 />
             </button>
-          </div>
-        </form>
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-3xl font-txtFont mt-3 font-semibold">
+                  Login
+                </h1>
+                <h1 className="mt-2">
+                  or{" "}
+                  <span className="text-orange-500 font-txtFont text-sm">
+                    create an account
+                  </span>
+                </h1>
+              </div>
+              <img src={CART_DISH} alt="img" className="w-24 h-24 mr-4" />
+            </div>
+            <hr className="w-12 bg-black h-[2px] mt-3 border-0" />
 
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Not a member?{" "}
-          <a
-            href="#"
-            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >
-            Start a 14 day free trial
-          </a>
-        </p>
+            <PhoneInput
+              placeholder="Phone Number"
+              value={phone}
+              onChange={() => setPhone(phone)}
+              containerStyle={{ marginTop: "20px" }}
+              inputStyle={{
+                width: "100%",
+                height: "63px",
+                backgroundColor: "none",
+                paddingLeft: "3rem",
+                fontSize: "1rem",
+              }}
+            />
+
+            <input
+              className="p-5 border font-txtFont text-center border-gray-300 mt-4 mb-7 w-full"
+              type="text"
+              placeholder="One Time Password"
+            />
+
+            <Link to="/home">
+              <button className="bg-orange-500 w-full mt-7 h-16 px-4 text-white font-bold hover:bg-orange-600">
+                LOG IN
+              </button>
+            </Link>
+            <h1 className="mt-4 font-medium text-sm text-slate-700 font-txtFont">
+              By clicking on Login, I accept the Terms and Condition & <br />
+              Privacy Policy
+            </h1>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,21 +1,20 @@
-// import RestaurantCard, { withOfferCards } from "./RestaurantCards";
 import RestaurantCard from "./RestaurantCards";
 import Banner from "./Banner";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
-// import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import useOnlineStatus from "../utills/useOnliineStatus";
 import useFetchRestaurants from "../utills/useFetchRestaurants";
 
 import Offline from "./Offline";
 import Slider from "./Slider";
 import TopResSlider from "./TopResSlider";
+import RapidResCard from "./RapidResCard";
+import Footer from "./Footer";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
+  const [resData, setResData] = useState([]);
   // const RestaurantCardWithOffer = withOfferCards(RestaurantCard);
 
   // const {
@@ -41,7 +40,39 @@ const Body = () => {
     "https://foodfire.onrender.com/api/restaurants?lat=18.9486&lng=72.83662&page_type=DESKTOP_WEB_LISTING"
   );
 
-  console.log("Body rendered", filteredTopRes);
+  // const getRestaurants = async () => {
+  //   const url = "https://restaurants222.p.rapidapi.com/search";
+
+  //   const options = {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/x-www-form-urlencoded",
+  //       "x-rapidapi-key": "c037534340mshf862aa41390b65ep1a1402jsn1992b4c33711",
+  //       "x-rapidapi-host": "restaurants222.p.rapidapi.com",
+  //     },
+  //     body: new URLSearchParams({
+  //       location_id: "297704",
+  //       language: "en_US",
+  //       currency: "USD",
+  //       offset: "0",
+  //     }),
+  //   };
+
+  //   try {
+  //     const response = await fetch(url, options);
+  //     const details = await response.json();
+  //     console.log(details.results);
+  //     setResData(details.results.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getRestaurants();
+  // }, []);
+
+  // console.log("Body rendered", filteredTopRes);
 
   const onlineStatus = useOnlineStatus();
 
@@ -105,15 +136,6 @@ const Body = () => {
           </button>
         </div>
       </div>
-      {/* <Slider {...restaurantSettings}>
-        {filteredTopRes.map((eachRestaurant) => (
-          <div key={eachRestaurant.info.id}>
-            <Link to={"/restaurants/" + eachRestaurant.info.id}>
-              <RestaurantCard restaurantData={eachRestaurant} />
-            </Link>
-          </div>
-        ))}
-      </Slider> */}
       <TopResSlider data={filteredTopRes} />
 
       <h2 className="allRestaurantListHeading text-2xl mt-2 font-txtFont font-semibold">

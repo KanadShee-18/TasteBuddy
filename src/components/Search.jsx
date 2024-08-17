@@ -51,7 +51,7 @@ const Search = () => {
             .map((eachItem) => (
               <div
                 key={eachItem.info.id}
-                className="w-2/3 m-auto items-center mt-5 flex justify-start"
+                className="w-2/3 m-auto items-center mt-5 flex justify-start flex-shrink-0 flex-grow"
               >
                 <Link to={"/restaurants/" + eachItem?.info?.id}>
                   <img
