@@ -6,6 +6,7 @@ import { updateLocation } from "../utills/locationSlice";
 import logoImg2 from "./logo2.png";
 import { BiHomeSmile, BiSearchAlt } from "react-icons/bi";
 import { RiAccountPinCircleLine } from "react-icons/ri";
+import { apiKey } from "../utills/constants";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +28,7 @@ const Header = () => {
                 const options = {
                     method: "GET",
                     headers: {
-                        "x-rapidapi-key":
-                            "c037534340mshf862aa41390b65ep1a1402jsn1992b4c33711",
+                        "x-rapidapi-key": apiKey,
                         "x-rapidapi-host":
                             "india-pincode-with-latitude-and-longitude.p.rapidapi.com",
                     },

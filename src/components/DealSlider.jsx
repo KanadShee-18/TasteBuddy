@@ -32,8 +32,8 @@ const DealSlider = ({ offerData }) => {
                 id="DealSlider"
                 className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
             >
-                {offerData?.map((eachData) => (
-                    <Offer key={eachData?.info?.restId} dealData={eachData} />
+                {offerData?.map((eachData, index) => (
+                    <Offer key={index} dealData={eachData} />
                 ))}
             </div>
         </div>

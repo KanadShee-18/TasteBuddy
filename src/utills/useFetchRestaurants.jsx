@@ -4,6 +4,7 @@ import { swiggyAPI } from "./constants";
 
 const useFetchRestaurants = (lat, lng) => {
     const [imageOfFoods, setImageOfFood] = useState([]);
+    const [cuisines, setCuisines] = useState([]);
     const [listOfTopRes, setListOfTopRes] = useState([]);
     const [filteredTopRes, setFilteredTopRes] = useState([]);
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -15,9 +16,12 @@ const useFetchRestaurants = (lat, lng) => {
                 const response = await fetch(swiggyAPI(lat, lng));
                 const json = await response.json();
 
+                console.log(json);
+
                 setImageOfFood(
                     json?.data?.cards[0]?.card?.card?.imageGridCards?.info
                 );
+                setCuisines(json?.data?.cards[7]?.card?.card?.brands);
                 setListOfTopRes(
                     json?.data?.cards[1]?.card?.card?.gridElements
                         ?.infoWithStyle?.restaurants
@@ -39,8 +43,11 @@ const useFetchRestaurants = (lat, lng) => {
         fetchData();
     }, [lat, lng]);
 
+    console.log("Cuisines: ", cuisines);
+
     return {
         imageOfFoods,
+        cuisines,
         listOfTopRes,
         filteredTopRes,
         listOfRestaurants,
