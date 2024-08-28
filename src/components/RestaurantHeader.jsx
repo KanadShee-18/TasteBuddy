@@ -1,5 +1,6 @@
 import { MdDeliveryDining } from "react-icons/md";
 import parse from "html-react-parser";
+import { MdCurrencyRupee } from "react-icons/md";
 
 const RestaurantHeader = ({
     name,
@@ -53,9 +54,10 @@ const RestaurantHeader = ({
                 <div className="w-full h-0.5 bg-slate-100"></div>
                 <div className="flex items-center mt-2">
                     <MdDeliveryDining className="mr-2 text-gray-700 text-[25px]" />
-                    <p className="text-sm font-normal text-gray-500 font-txtFont">
-                        {parse(feesDetails)}
-                    </p>
+                    <p
+                        className="flex items-center justify-center text-sm font-normal text-gray-500 font-txtFont"
+                        dangerouslySetInnerHTML={{ __html: feesDetails }}
+                    />
                 </div>
             </div>
         </div>
