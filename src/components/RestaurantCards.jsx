@@ -11,7 +11,7 @@ const RestaurantCard = (props) => {
     const subHeader = offerData?.subHeader;
 
     return (
-        <div className="res-card inline-block cursor-pointer md:w-[273px] w-[150px] md:h-[300px] h-[180px] m-4 border-none rounded-xl ease-in-out hover:scale-105 duration-200 transform relative">
+        <div className="res-card inline-block cursor-pointer md:w-[273px] w-[140px] md:h-[300px] h-[180px] my-4 mx-2 md:mx-4 md:my-4 border-none rounded-xl ease-in-out hover:scale-105 duration-200 transform relative">
             <div className="relative w-full h-36 md:h-44">
                 <img
                     src={CDN_URL + cloudinaryImageId}
@@ -19,9 +19,9 @@ const RestaurantCard = (props) => {
                     className="object-cover w-full h-full res-logo rounded-xl"
                 />
                 <span className="absolute bottom-0 left-0 flex flex-col justify-end w-full p-2 font-bold text-white h-1/2 bg-gradient-to-t from-black to-transparent font-txtFont rounded-b-xl">
-                    <h1 className="md:text-2xl text-sm text-center drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                    <p className="md:text-2xl text-[12px] text-center drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                         {header} {subHeader}
-                    </h1>
+                    </p>
                 </span>
             </div>
             <div className="px-2 card-info font-txtFont">

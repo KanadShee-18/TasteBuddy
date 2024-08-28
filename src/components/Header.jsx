@@ -81,7 +81,7 @@ const Header = () => {
     };
 
     return (
-        <div className="sticky top-0 z-20 flex items-center h-20 mx-2 bg-white shadow-md header">
+        <div className="sticky top-0 z-20 flex items-center h-20 md:mx-[calc(10%+16px)] mx-[calc(5%)] bg-white shadow-md header">
             <div className="flex items-center flex-grow">
                 <img
                     src={logoImg2}
@@ -107,7 +107,7 @@ const Header = () => {
             </div>
 
             <button
-                className="block ml-auto mr-4 text-gray-800 md:hidden"
+                className="block ml-auto mr-4 text-gray-800 lg:hidden"
                 onClick={toggleMenu}
             >
                 <i
@@ -117,7 +117,7 @@ const Header = () => {
                 ></i>
             </button>
             <div
-                className={`md:flex items-center ${
+                className={`lg:flex items-center ${
                     isOpen ? "block" : "hidden"
                 } lg:shadow-none md:shadow-none md:static absolute top-20 right-0 ${
                     isOpen
@@ -126,7 +126,7 @@ const Header = () => {
                 }`}
             >
                 <ul
-                    className={`flex flex-col md:flex-row md:items-center md:justify-around font-medium font-txtFont text-gray-800`}
+                    className={`flex flex-col lg:flex-row lg:items-center md:justify-around font-medium font-txtFont text-gray-800`}
                 >
                     <li
                         className={`md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] ${

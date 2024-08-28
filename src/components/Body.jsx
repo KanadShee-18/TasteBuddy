@@ -223,7 +223,7 @@ const Body = () => {
                     )}
                 </button>
             </div>
-            <div className="flex flex-wrap mx-2 allRestaurantContainer mt-15 justify-evenly">
+            <div className="flex flex-wrap justify-between allRestaurantContainer mt-15">
                 {listOfRestaurants && listOfRestaurants.length > 0 ? (
                     listOfRestaurants.map((eachRes) => (
                         <Link

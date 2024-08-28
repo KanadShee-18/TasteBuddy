@@ -15,7 +15,7 @@ const TopResTopResSlider = ({ data }) => {
 
     return (
         <div className="relative">
-            <div className="absolute flex items-center gap-1 justify-end md:-top-8 md:-right-14 -top-5 right-0 z-[5]">
+            <div className="absolute flex items-center gap-1 justify-end md:-top-8 -top-5 right-0 z-[5]">
                 <button
                     onClick={slideLeft}
                     className="p-1 rounded-full md:p-2 bg-slate-100 text-slate-400 hover:text-slate-500 hover:bg-slate-300"
