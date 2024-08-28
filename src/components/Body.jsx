@@ -169,16 +169,16 @@ const Body = () => {
                 <ShimmerResCard num={4} />
             )}
 
-            <h2 className="mt-16 text-2xl font-semibold text-slate-700 allRestaurantListHeading font-txtFont">
+            <h2 className="mt-16 mb-4 text-2xl font-semibold text-slate-700 allRestaurantListHeading font-txtFont">
                 Restaurants with online food delivery in {district}
             </h2>
             <div className="flex filterBtn gap-x-3">
-                <button className="flex items-center justify-between w-auto h-10 px-4 mt-3 ml-10 font-semibold border-none mr-7 text-slate-200 rounded-tl-3xl rounded-br-3xl rounded-tr-md rounded-bl-md bg-gradient-to-r from-slate-500 to-zinc-300 font-txtFont">
+                <button className="flex items-center justify-between w-auto h-10 px-4 mt-3 ml-10 font-semibold border-none mr-7 text-slate-600 rounded-tl-3xl rounded-br-3xl rounded-tr-md rounded-bl-md bg-gradient-to-r from-slate-300 to-zinc-100 font-txtFont">
                     Filters
                     <IoFilter className="ml-3 text-slate-500 size-6" />
                 </button>
                 <button
-                    className={`w-auto h-10 px-2 mt-3 font-semibold border border-slate-500 rounded-md font-txtFont ${
+                    className={`w-auto h-10 px-2 mt-3 font-semibold border border-slate-300 rounded-md font-txtFont ${
                         isTopRated
                             ? "text-slate-700 bg-gradient-to-br from-slate-300 to-slate-100"
                             : "text-slate-500 bg-gradient-to-br from-slate-200 to-slate-10"
@@ -194,7 +194,7 @@ const Body = () => {
                     )}
                 </button>
                 <button
-                    className={`w-auto h-10 px-2 mt-3 font-semibold border border-slate-500 rounded-md font-txtFont ${
+                    className={`w-auto h-10 px-2 mt-3 font-semibold border border-slate-300 rounded-md font-txtFont ${
                         isSortedByDeliveryTime
                             ? "text-slate-700 bg-gradient-to-br from-slate-300 to-slate-100"
                             : "text-slate-500 bg-gradient-to-br from-slate-200 to-slate-10"
@@ -203,14 +203,14 @@ const Body = () => {
                 >
                     {isSortedByDeliveryTime ? (
                         <span className="flex items-center">
-                            Delivery Time <MdClose className="ml-2" />
+                            Fast Delivery <MdClose className="ml-2" />
                         </span>
                     ) : (
-                        "Delivery Time"
+                        "Fast Delivery"
                     )}
                 </button>
                 <button
-                    className={`w-auto h-10 px-2 mt-3 font-semibold border border-slate-500 rounded-md font-txtFont ${
+                    className={`w-auto h-10 px-2 mt-3 font-semibold border border-slate-300 rounded-md font-txtFont ${
                         isSortedByCost
                             ? "text-slate-700 bg-gradient-to-br from-slate-300 to-slate-100"
                             : "text-slate-500 bg-gradient-to-br from-slate-100 to-slate-50"

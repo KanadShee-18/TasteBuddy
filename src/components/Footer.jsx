@@ -199,11 +199,11 @@ const Footer = () => {
                     <h1 className="text-[18px] mb-3 text-slate-300">
                         All Cities:
                     </h1>
-                    <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <ul className="grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {additionalCities.map((city, index) => (
                             <li
                                 key={index}
-                                className="p-2 mb-1 duration-300 ease-in-out cursor-pointer text-slate-400 hover:text-slate-200 hover:translate-x-2"
+                                className="flex justify-center py-2 mb-1 duration-300 ease-in-out rounded-md cursor-pointer text-slate-400 hover:text-slate-200 hover:translate-x-2 hover:bg-slate-600 hover:bg-opacity-65"
                             >
                                 {city}
                             </li>
