@@ -5,207 +5,232 @@ import rollImg from "../Images/cart_dish.png";
 import { addItem, clearCart } from "../utills/cartSlice";
 
 const Cart = () => {
-  const cartItems = useSelector((store) => store.cart.items);
-  let totalBill = 0;
+    const cartItems = useSelector((store) => store.cart.items);
+    let totalBill = 0;
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
+    const handleClearCart = () => {
+        dispatch(clearCart());
+    };
 
-  return (
-    <div className="flex flex-col md:flex-row bg-neutral-200 p-4 min-h-screen px-[calc(10%)] font-txtFont">
-      {/* Left Side: Account, Delivery Address, Payment */}
-      <div className="flex flex-col w-full md:w-2/3 bg-transparent p-4 shadow-md rounded-sm">
-        {/* Account Section */}
-        <div className="flex justify-between items-start mb-8 bg-white px-8 py-10 relative">
-          <span className="flex justify-center absolute top-1/4 -left-7 bg-[#282c3f]">
-            <i className="fa-solid fa-user text-xl text-slate-200 p-2"></i>
-          </span>
-          <div className="w-8/12">
-            <h2 className="text-md font-semibold">Account</h2>
-            <p className="text-gray-600 text-sm">
-              To place your order now, log in to your existing account or sign
-              up.
-            </p>
-            <div className="flex mt-4">
-              <button className="bg-white text-green-500 border-2 border-green-500 px-4 py-1 mr-7 rounded-sm w-[180px]">
-                <h1 className="text-[12px]">Have an account?</h1>
-                <p className="font-semibold">LOG IN</p>
-              </button>
-              <button className="bg-green-700 text-white px-4 py-1 rounded-sm w-[180px]">
-                <h1 className="text-[12px]">New to Swiggy?</h1>
-                <p className="font-semibold">SIGN UP</p>
-              </button>
-            </div>
-          </div>
-          <div>
-            <img src={rollImg} alt="" />
-          </div>
-        </div>
-
-        {/* Delivery Address Section */}
-        <div className="flex items-start mb-8 bg-white px-6 py-9 text-slate-700 relative">
-          <span className="flex justify-center absolute top-1/4 -left-7 bg-white border-black rounded-sm shadow-[0px_2px_8px_0px_#718096]">
-            <i className="fa-solid fa-location-dot text-xl text-neutral-800 p-3"></i>
-          </span>
-          <div className="w-11/12">
-            <h2 className="text-md font-semibold">Delivery address</h2>
-          </div>
-        </div>
-
-        {/* Payment Section */}
-        <div className="flex items-start bg-white px-6 py-9 text-slate-700 relative">
-          <span className="flex justify-center absolute top-1/4 -left-7 bg-white border-black rounded-sm shadow-[0px_2px_8px_0px_#718096]">
-            <i className="fa-solid fa-wallet text-xl text-neutral-800 p-3"></i>
-          </span>
-          <div className="w-11/12">
-            <h2 className="text-md font-semibold">Payment</h2>
-          </div>
-        </div>
-      </div>
-
-      {/* Right Side: Order Summary */}
-      <div className="w-full md:w-1/3 bg-white p-4 mt-4 ml-4 shadow-md rounded-sm h-auto">
-        {cartItems.length > 0 ? (
-          <>
-            {/* Restaurant Info */}
-            <div className="flex justify-between items-center border-b pb-4 mb-4">
-              <div>
-                <h2 className="text-md font-semibold">Burger King</h2>
-                <p className="text-gray-600 text-sm">Kasba</p>
-              </div>
-              <img
-                src={IMAGE_URL + cartItems[0].card.info.imageId}
-                alt="Restaurant Logo"
-                className="w-16 h-16 object-cover"
-              />
-            </div>
-
-            {cartItems.map((item, index) => {
-              // totalBill += item.card.info.price / 100;
-              {
-                item?.card?.info?.price
-                  ? (totalBill += item.card.info.price / 100)
-                  : (totalBill += item.card.info.defaultPrice / 100);
-              }
-              return (
-                <div
-                  key={index}
-                  className="flex justify-between items-center mb-4"
-                >
-                  <div>
-                    <p className="text-gray-800 text-sm">
-                      {item.card.info.name}
-                    </p>
-                    <div className="flex items-center mt-2">
-                      <button className="text-green-500 px-2">-</button>
-                      <span className="px-4 text-sm">1</span>
-                      <button className="text-green-500 px-2">+</button>
+    return (
+        <div className="flex flex-col md:flex-row bg-neutral-200 p-4 min-h-screen px-[calc(10%)] font-txtFont">
+            {/* Left Side: Account, Delivery Address, Payment */}
+            <div className="flex flex-col w-full p-4 bg-transparent rounded-sm shadow-md md:w-2/3">
+                {/* Account Section */}
+                <div className="relative flex items-start justify-between px-8 py-10 mb-8 bg-white">
+                    <span className="flex justify-center absolute top-1/4 -left-7 bg-[#282c3f]">
+                        <i className="p-2 text-xl fa-solid fa-user text-slate-200"></i>
+                    </span>
+                    <div className="w-8/12">
+                        <h2 className="font-semibold text-md">Account</h2>
+                        <p className="text-gray-600 md:text-sm text-[12px]">
+                            To place your order now, log in to your existing
+                            account or sign up.
+                        </p>
+                        <div className="flex mt-4">
+                            <button className="bg-white text-green-500 border-2 border-green-500 px-4 py-1 mr-7 rounded-sm w-[180px]">
+                                <h1 className="text-[12px]">
+                                    Have an account?
+                                </h1>
+                                <p className="text-sm font-semibold md:text-base">
+                                    LOG IN
+                                </p>
+                            </button>
+                            <button className="bg-green-700 text-white px-4 py-1 rounded-sm w-[180px]">
+                                <h1 className="text-[12px]">New to Swiggy?</h1>
+                                <p className="text-sm font-semibold md:text-base">
+                                    SIGN UP
+                                </p>
+                            </button>
+                        </div>
                     </div>
-                  </div>
-                  {item?.card?.info?.price ? (
-                    <p className="text-gray-800 text-sm">
-                      {" "}
-                      ₹{item.card.info.price / 100}
-                    </p>
-                  ) : (
-                    <p className="text-gray-800 text-sm">
-                      {" "}
-                      ₹{item.card.info.defaultPrice / 100}
-                    </p>
-                  )}
+                    <div>
+                        <img src={rollImg} alt="" />
+                    </div>
                 </div>
-              );
-            })}
-          </>
-        ) : (
-          <p className="mb-4 text-center font-medium text-slate-600">
-            😥Your cart is empty. Add items!
-          </p>
-        )}
 
-        {/* Suggestions */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="w-[60%] drop-shadow-sm border-1 border-black rounded-md shadow-[0px_2px_8px_0px_#718096] flex items-center justify-center">
-            <input
-              type="text"
-              placeholder="''Any suggestions? We will pass it on..."
-              className="w-full p-2 border text-sm text-center border-none outline-none rounded-sm"
-            />
-          </div>
-          <div className="flex justify-end w-[30%]">
-            <button
-              className="w-[100px] font-medium bg-orange-600 text-white py-2 rounded-sm hover:scale-95 duration-200 hover:bg-neutral-950 active:bg-orange-600"
-              onClick={handleClearCart}
-            >
-              {" "}
-              Clear
-            </button>
-          </div>
+                {/* Delivery Address Section */}
+                <div className="relative flex items-start px-6 mb-8 bg-white py-9 text-slate-700">
+                    <span className="flex justify-center absolute top-1/4 -left-7 bg-white border-black rounded-sm shadow-[0px_2px_8px_0px_#718096]">
+                        <i className="p-3 text-xl fa-solid fa-location-dot text-neutral-800"></i>
+                    </span>
+                    <div className="w-11/12">
+                        <h2 className="font-semibold text-md">
+                            Delivery address
+                        </h2>
+                    </div>
+                </div>
+
+                {/* Payment Section */}
+                <div className="relative flex items-start px-6 bg-white py-9 text-slate-700">
+                    <span className="flex justify-center absolute top-1/4 -left-7 bg-white border-black rounded-sm shadow-[0px_2px_8px_0px_#718096]">
+                        <i className="p-3 text-xl fa-solid fa-wallet text-neutral-800"></i>
+                    </span>
+                    <div className="w-11/12">
+                        <h2 className="font-semibold text-md">Payment</h2>
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Side: Order Summary */}
+            <div className="w-full h-auto p-4 mt-4 ml-4 bg-white rounded-sm shadow-md md:w-1/3">
+                {cartItems.length > 0 ? (
+                    <>
+                        {/* Restaurant Info */}
+                        <div className="flex items-center justify-between pb-4 mb-4 border-b">
+                            <div>
+                                <h2 className="font-semibold text-md">
+                                    Burger King
+                                </h2>
+                                <p className="text-sm text-gray-600">Kasba</p>
+                            </div>
+                            <img
+                                src={IMAGE_URL + cartItems[0].card.info.imageId}
+                                alt="Restaurant Logo"
+                                className="object-cover w-16 h-16"
+                            />
+                        </div>
+
+                        {cartItems.map((item, index) => {
+                            // totalBill += item.card.info.price / 100;
+                            {
+                                item?.card?.info?.price
+                                    ? (totalBill += item.card.info.price / 100)
+                                    : (totalBill +=
+                                          item.card.info.defaultPrice / 100);
+                            }
+                            return (
+                                <div
+                                    key={index}
+                                    className="flex items-center justify-between mb-4"
+                                >
+                                    <div>
+                                        <p className="text-sm text-gray-800">
+                                            {item.card.info.name}
+                                        </p>
+                                        <div className="flex items-center mt-2">
+                                            <button className="px-2 text-green-500">
+                                                -
+                                            </button>
+                                            <span className="px-4 text-sm">
+                                                1
+                                            </span>
+                                            <button className="px-2 text-green-500">
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {item?.card?.info?.price ? (
+                                        <p className="text-sm text-gray-800">
+                                            {" "}
+                                            ₹{item.card.info.price / 100}
+                                        </p>
+                                    ) : (
+                                        <p className="text-sm text-gray-800">
+                                            {" "}
+                                            ₹{item.card.info.defaultPrice / 100}
+                                        </p>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </>
+                ) : (
+                    <p className="mb-4 font-medium text-center text-slate-600">
+                        😥Your cart is empty. Add items!
+                    </p>
+                )}
+
+                {/* Suggestions */}
+                <div className="flex items-center justify-between mb-4">
+                    <div className="w-[60%] drop-shadow-sm border-1 border-black rounded-md shadow-[0px_2px_8px_0px_#718096] flex items-center justify-center">
+                        <input
+                            type="text"
+                            placeholder="''Any suggestions? We will pass it on..."
+                            className="w-full p-2 text-sm text-center border border-none rounded-sm outline-none"
+                        />
+                    </div>
+                    <div className="flex justify-end w-[30%]">
+                        <button
+                            className="w-[100px] font-medium bg-orange-600 text-white py-2 rounded-sm hover:scale-95 duration-200 hover:bg-neutral-950 active:bg-orange-600"
+                            onClick={handleClearCart}
+                        >
+                            {" "}
+                            Clear
+                        </button>
+                    </div>
+                </div>
+
+                {/* No-contact Delivery Option */}
+                <div className="flex items-start mb-4">
+                    <input type="checkbox" className="mt-1 mr-2" />
+                    <p className="text-sm text-gray-600">
+                        Opt in for No-contact Delivery
+                    </p>
+                </div>
+
+                {/* Bill Details */}
+                <div className="pt-4 mt-4 border-t">
+                    <h3 className="font-semibold text-md">Bill Details</h3>
+                    <div className="flex justify-between mt-2">
+                        <p className="text-sm text-gray-600">Item Total</p>
+                        <p className="text-sm">₹{totalBill.toFixed(2)}</p>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                        <p className="text-sm text-gray-600">
+                            Delivery Fee 1.2 kms
+                        </p>
+                        <p className="text-sm">₹20</p>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                        <p className="text-sm text-gray-600">Platform fee</p>
+                        <p className="text-sm">₹6</p>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                        <p className="text-sm text-gray-600">
+                            GST and Restaurant Charges
+                        </p>
+                        <p className="text-sm">₹27.54</p>
+                    </div>
+                </div>
+
+                {/* Total Amount */}
+                <div className="flex justify-between mt-4 pt-4 border-t-[3px] border-neutral-800 text-md font-bold">
+                    <p className="text-md">TO PAY</p>
+                    <p className="text-md">
+                        ₹{(totalBill + 20 + 6 + 27.54).toFixed(2)}
+                    </p>
+                </div>
+
+                <div className="w-full h-3 mt-10 bg-slate-200"></div>
+
+                {/* New Section: Review and Cancellation Policy */}
+                <div className="p-4 mt-6 border-2 border-gray-200">
+                    <h4 className="text-sm font-semibold">
+                        Review your order and address details to avoid
+                        cancellations
+                    </h4>
+                    <p className="text-[12px] text-gray-600 mt-2">
+                        <span className="font-bold text-red-600">Note:</span> If
+                        you cancel within 60 seconds of placing your order, a
+                        100% refund will be issued. No refund for cancellations
+                        made after 60 seconds.
+                    </p>
+                    <p className="text-[12px] text-gray-600 mt-1">
+                        Avoid cancellation as it leads to food wastage.
+                    </p>
+                    <a
+                        href="#"
+                        className="inline-block mt-2 text-sm font-semibold text-orange-600 underline"
+                    >
+                        Read cancellation policy
+                    </a>
+                </div>
+            </div>
         </div>
-
-        {/* No-contact Delivery Option */}
-        <div className="flex items-start mb-4">
-          <input type="checkbox" className="mr-2 mt-1" />
-          <p className="text-gray-600 text-sm">
-            Opt in for No-contact Delivery
-          </p>
-        </div>
-
-        {/* Bill Details */}
-        <div className="border-t pt-4 mt-4">
-          <h3 className="text-md font-semibold">Bill Details</h3>
-          <div className="flex justify-between mt-2">
-            <p className="text-gray-600 text-sm">Item Total</p>
-            <p className="text-sm">₹{totalBill.toFixed(2)}</p>
-          </div>
-          <div className="flex justify-between mt-2">
-            <p className="text-gray-600 text-sm">Delivery Fee 1.2 kms</p>
-            <p className="text-sm">₹20</p>
-          </div>
-          <div className="flex justify-between mt-2">
-            <p className="text-gray-600 text-sm">Platform fee</p>
-            <p className="text-sm">₹6</p>
-          </div>
-          <div className="flex justify-between mt-2">
-            <p className="text-gray-600 text-sm">GST and Restaurant Charges</p>
-            <p className="text-sm">₹27.54</p>
-          </div>
-        </div>
-
-        {/* Total Amount */}
-        <div className="flex justify-between mt-4 pt-4 border-t-[3px] border-neutral-800 text-md font-bold">
-          <p className="text-md">TO PAY</p>
-          <p className="text-md">₹{(totalBill + 20 + 6 + 27.54).toFixed(2)}</p>
-        </div>
-
-        <div className="w-full h-3 bg-slate-200 mt-10"></div>
-
-        {/* New Section: Review and Cancellation Policy */}
-        <div className="mt-6 p-4 border-2 border-gray-200">
-          <h4 className="text-sm font-semibold">
-            Review your order and address details to avoid cancellations
-          </h4>
-          <p className="text-[12px] text-gray-600 mt-2">
-            <span className="text-red-600 font-bold">Note:</span> If you cancel
-            within 60 seconds of placing your order, a 100% refund will be
-            issued. No refund for cancellations made after 60 seconds.
-          </p>
-          <p className="text-[12px] text-gray-600 mt-1">
-            Avoid cancellation as it leads to food wastage.
-          </p>
-          <a
-            href="#"
-            className="text-orange-600 text-sm font-semibold mt-2 inline-block underline"
-          >
-            Read cancellation policy
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Cart;

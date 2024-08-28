@@ -16,12 +16,12 @@ const ItemList = ({ items, isExpanded }) => {
             {items.map((item) => (
                 <div key={item?.card?.info?.id}>
                     <div className="flex flex-wrap justify-between px-2 py-3">
-                        <div className="w-8/12 details">
-                            <h3 className="font-semibold text-gray-800 text-md font-txtFont">
+                        <div className="md:w-8/12 w-[55%] details">
+                            <h3 className="text-sm font-semibold text-gray-800 md:text-base font-txtFont">
                                 {item.card.info.name}
                             </h3>
-                            <h2 className="pb-1 font-semibold text-gray-700 text-md font-txtFont">
-                                <i className="fa-solid fa-indian-rupee-sign text-[14px]"></i>
+                            <h2 className="pb-1 text-sm font-semibold text-gray-700 md:text-base font-txtFont">
+                                <i className="fa-solid fa-indian-rupee-sign md:text-sm text-[12px]"></i>
                                 &nbsp;
                                 {item.card.info.price / 100 ||
                                     item.card.info.defaultPrice / 100}
@@ -29,8 +29,8 @@ const ItemList = ({ items, isExpanded }) => {
                             </h2>
                             {item.card.info.ratings?.aggregatedRating
                                 ?.rating && (
-                                <h2 className="text-[15px] text-gray-600 font-txtFont font-semibold pb-2">
-                                    <i className="pr-1 text-green-600 fa-solid fa-star-half-stroke"></i>
+                                <h2 className="pb-2 text-[12px] font-semibold text-gray-600 md:text-base font-txtFont">
+                                    <i className="pr-1 text-[12px] text-green-600 md:text-base fa-solid fa-star-half-stroke"></i>
                                     {
                                         item.card.info.ratings.aggregatedRating
                                             .rating
@@ -43,18 +43,18 @@ const ItemList = ({ items, isExpanded }) => {
                                     )
                                 </h2>
                             )}
-                            <p className="font-txtFont text-[14px] font-medium text-gray-700">
+                            <p className="font-txtFont md:text-sm text-[12px] font-medium text-gray-700 text-justify">
                                 {item.card.info.description || ""}
                             </p>
                         </div>
-                        <div className="relative w-40 h-36">
+                        <div className="relative h-24 w-28 md:w-40 md:h-36">
                             <img
                                 className="relative object-cover w-full h-full mt-2 rounded-xl mb-7"
                                 src={IMAGE_URL + item.card.info.imageId}
                                 alt="img"
                             />
                             <button
-                                className="border font-txtFont border-none absolute -bottom-5 left-7 text-green-600 text-lg font-semibold bg-gradient-to-r from-green-200 to-slate-100 rounded-md w-[100px] h-10 px-2 hover:scale-110 duration-200 active:bg-gradient-to-r active:from-green-500 active:to-slate-400 active:text-white"
+                                className="border font-txtFont border-none absolute md:-bottom-5 md:left-7 -bottom-2 left-4 text-green-600 text-sm md:text-lg font-semibold bg-gradient-to-r from-green-200 to-slate-100 rounded-md md:w-[100px] w-[70px] md:h-10 h-7 md:px-2 px-1 hover:scale-110 duration-200 active:bg-gradient-to-r active:from-green-500 active:to-slate-400 active:text-white"
                                 onClick={() => handleAddItem(item)}
                             >
                                 ADD+

@@ -3,31 +3,31 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ItemList from "./ItemList";
 
 const RestaurantCategory = ({ data, isExpanded, setShowIndex }) => {
-  const items = data?.itemCards || [];
+    const items = data?.itemCards || [];
 
-  const handleToggle = () => {
-    setShowIndex();
-  };
+    const handleToggle = () => {
+        setShowIndex();
+    };
 
-  return (
-    <div>
-      <div
-        onClick={handleToggle}
-        className="flex items-center bg-slate-50 shadow-md my-4 rounded-md cursor-pointer"
-      >
-        <span className="font-txtFont font-semibold text-slate-800 text-lg pt-4 pl-2 mb-4 flex-1">
-          {data.title} ({data?.itemCards?.length})
-        </span>
-        {isExpanded ? (
-          <FaChevronUp className="mr-2 text-xl text-gray-600 hover:text-gray-800 transition duration-200" />
-        ) : (
-          <FaChevronDown className="mr-2 text-xl text-gray-600 hover:text-gray-800 transition duration-200" />
-        )}
-      </div>
-      {isExpanded && <ItemList items={items} />}
-      <div className="w-full h-3 bg-slate-200 rounded-sm"></div>
-    </div>
-  );
+    return (
+        <div className="md:mx-0 mx-[calc(5%)]">
+            <div
+                onClick={handleToggle}
+                className="flex items-center my-4 rounded-md shadow-md cursor-pointer bg-slate-50"
+            >
+                <span className="flex-1 pt-4 pl-2 mb-4 text-sm font-semibold md:text-lg font-txtFont text-slate-800">
+                    {data.title} ({data?.itemCards?.length})
+                </span>
+                {isExpanded ? (
+                    <FaChevronUp className="mr-2 text-base text-gray-600 transition duration-200 md:text-xl hover:text-gray-800" />
+                ) : (
+                    <FaChevronDown className="mr-2 text-base text-gray-600 transition duration-200 md:text-xl hover:text-gray-800" />
+                )}
+            </div>
+            {isExpanded && <ItemList items={items} />}
+            <div className="w-full h-3 rounded-sm bg-slate-200"></div>
+        </div>
+    );
 };
 
 export default RestaurantCategory;

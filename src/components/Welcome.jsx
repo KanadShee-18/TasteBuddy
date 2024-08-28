@@ -11,11 +11,11 @@ const Welcome = () => {
         <div className="flex">
             <div className="w-3/4 h-screen px-4 md:w-1/2 md:px-10">
                 <div className="flex justify-between mt-16">
-                    <img src={LOGO_IMG} alt="" className="w-44" />
-                    <div className="flex items-center mr-3 text-sm font-txtFont">
+                    <img src={LOGO_IMG} alt="" className="md:w-44 w-28" />
+                    <div className="flex items-center mr-1 text-sm font-txtFont">
                         <button
                             onClick={() => setSignUpModel(true)}
-                            className="px-3 py-3 text-white hover:bg-slate-700 md:px-5 bg-slate-900"
+                            className="px-3 py-2 text-white md:py-3 hover:bg-slate-700 md:px-5 bg-slate-900"
                         >
                             Sign Up
                         </button>
@@ -28,7 +28,7 @@ const Welcome = () => {
                     </div>
                 </div>
                 <div className="mt-24 font-txtFont">
-                    <h1 className="ml-2 text-5xl font-bold text-start">
+                    <h1 className="ml-2 text-3xl font-bold md:text-5xl text-start">
                         Hungry?
                     </h1>
                     <p className="text-start text-[18px] ml-2 mt-2 font-semibold text-slate-500 font-txtFont">
@@ -40,7 +40,7 @@ const Welcome = () => {
                             placeholder="Enter your location"
                             className="outline-none border-none bg-none text-start pl-3 h-full w-[75%]"
                         />
-                        <button className="h-full px-4 font-bold text-white bg-orange-500 hover:bg-orange-600">
+                        <button className="h-full px-4 text-sm font-bold text-white bg-orange-500 md:text-base hover:bg-orange-600">
                             FIND FOOD
                         </button>
                     </div>
@@ -49,7 +49,7 @@ const Welcome = () => {
                         <h1 className="font-semibold font-txtFont text-zinc-500">
                             POPULAR CITIES IN INDIA
                         </h1>
-                        <ul className="flex flex-wrap mt-6 font-semibold gap-x-3">
+                        <ul className="flex flex-wrap mt-6 text-sm font-semibold md:text-base gap-x-3">
                             <li className="text-neutral-800">Ahmedabad</li>
                             <li className="text-slate-700">Bangalore</li>
                             <li className="text-neutral-800">Chennai</li>

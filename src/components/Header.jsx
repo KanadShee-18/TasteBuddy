@@ -85,10 +85,10 @@ const Header = () => {
             <div className="flex items-center flex-grow">
                 <img
                     src={logoImg2}
-                    className="w-auto h-[70px] object-cover cursor-pointer mt-1 px-1 ml-4"
+                    className="w-auto h-[70px] object-cover cursor-pointer mt-1 px-1 md:ml-4 ml-1"
                     alt="Logo"
                 />
-                <div className="w-[200px] mt-5 ml-2 pb-1 border-b-[1px] border-slate-800 flex justify-between items-center">
+                <div className="md:w-[200px] w-[150px] mt-5 ml-2 pb-1 border-b-[1px] border-slate-800 flex justify-between items-center">
                     <input
                         ref={pinCodeRef}
                         type="text"
@@ -120,7 +120,9 @@ const Header = () => {
                 className={`md:flex items-center ${
                     isOpen ? "block" : "hidden"
                 } lg:shadow-none md:shadow-none md:static absolute top-20 right-0 ${
-                    isOpen ? "bg-slate-200 sm:shadow-lg rounded-md p-2" : ""
+                    isOpen
+                        ? "bg-gradient-to-tl from-slate-500 to-transparent sm:shadow-lg rounded-md p-2"
+                        : ""
                 }`}
             >
                 <ul
@@ -129,7 +131,7 @@ const Header = () => {
                     <li
                         className={`md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] ${
                             isOpen
-                                ? "bg-gradient-to-r from-slate-100 to-orange-200 rounded-sm py-1 mt-2 scale-95 duration-200"
+                                ? "bg-gradient-to-r from-orange-100 to-orange-50 rounded-sm py-1 px-1 mt-2 scale-95 duration-200"
                                 : "hover:scale-95 duration-200"
                         }`}
                     >
@@ -145,7 +147,7 @@ const Header = () => {
                     <li
                         className={`md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] ${
                             isOpen
-                                ? "bg-gradient-to-r from-slate-100 to-orange-200 rounded-sm py-1 mt-2 scale-95 duration-200"
+                                ? "bg-gradient-to-r from-orange-100 to-orange-50 rounded-sm px-1 py-1 mt-2 scale-95 duration-200"
                                 : "hover:scale-95 duration-200"
                         }`}
                     >
@@ -161,7 +163,7 @@ const Header = () => {
                     <li
                         className={`md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] ${
                             isOpen
-                                ? "bg-gradient-to-r from-slate-100 to-orange-200 rounded-sm py-1 mt-2 scale-95 duration-200"
+                                ? "bg-gradient-to-r from-orange-100 to-orange-50 rounded-sm py-1 mt-2 scale-95 duration-200"
                                 : "hover:scale-95 duration-200"
                         }`}
                     >
@@ -175,9 +177,9 @@ const Header = () => {
                         </Link>
                     </li>
                     <li
-                        className={`md:px-7 sm:px-2 cursor-pointer hover:text-[#ff5d0d] ${
+                        className={`md:px-7 sm:px-2 cursor-pointer flex justify-center items-center hover:text-[#ff5d0d] ${
                             isOpen
-                                ? "bg-gradient-to-r from-slate-100 to-orange-200 rounded-sm py-1 mt-2 scale-95 duration-200"
+                                ? "bg-gradient-to-r from-orange-100 to-orange-50 rounded-sm py-1 mt-3 scale-95 duration-200"
                                 : "hover:scale-95 duration-200"
                         }`}
                     >
@@ -185,7 +187,7 @@ const Header = () => {
                             to="/cart"
                             className="cart relative text-md font-[500]"
                         >
-                            <span className="cart-count absolute -top-3 left-0.5 text-xs bg-red-100 text-slate-800 rounded-b-2xl px-2">
+                            <span className="cart-count absolute -top-3 left-0.5 text-xs bg-orange-500 text-slate-50 rounded-b-2xl px-2">
                                 {cartItems.length}
                             </span>
                             <i className="px-1 fa-solid fa-box-open icons cart"></i>

@@ -117,7 +117,7 @@ const Footer = () => {
     return (
         <div className="bg-gradient-to-b from-slate-950 to-slate-800 font-txtFont">
             <div className="flex flex-wrap items-center justify-center pt-10 pb-5 gap-x-3 text-slate-400">
-                <p className="pl-4 text-lg font-semibold lg:text-2xl">
+                <p className="pl-4 mb-4 text-sm font-semibold md:mb-0 md:text-lg lg:text-2xl">
                     For better experience, download the Tastebuddy app now
                 </p>
                 <div className="flex gap-2">
@@ -144,50 +144,56 @@ const Footer = () => {
             <div className="flex justify-around w-screen h-auto p-5 mt-5 text-sm text-white">
                 <div className="items-start">
                     <span className="object-cover w-16">
-                        <img src={LOGO} alt="" className="object-cover h-16" />
+                        <img
+                            src={LOGO}
+                            alt=""
+                            className="object-cover h-12 md:h-16"
+                        />
                     </span>
-                    <h1 className="pl-4 font-txtFont text-slate-300">
+                    <h1 className="md:pl-4 pl-2 md:text-base text-[12px] font-txtFont text-slate-300">
                         &copy; 2024 Bundl <br />
                         Technologies Pvt. Ltd
                     </h1>
                 </div>
                 <div className="ml-3">
-                    <h1 className="text-[18px] mb-3">Company</h1>
-                    <ul className="text-slate-400 ">
-                        <li className="mb-4">About</li>
-                        <li className="mb-4">Careers</li>
-                        <li className="mb-4">Team</li>
-                        <li className="mb-4">Tastebuddy One</li>
-                        <li className="mb-4">Tastebuddy Instamart</li>
-                        <li className="mb-4">Tastebuddy Genie</li>
+                    <h1 className="md:text-[18px] text-sm mb-3">Company</h1>
+                    <ul className="text-slate-400 md:text-sm text-[11px]">
+                        <li className="mb-2 md:mb-4">About</li>
+                        <li className="mb-2 md:mb-4">Careers</li>
+                        <li className="mb-2 md:mb-4">Team</li>
+                        <li className="mb-2 md:mb-4">Tastebuddy One</li>
+                        <li className="mb-2 md:mb-4">Tastebuddy Instamart</li>
+                        <li className="mb-2 md:mb-4">Tastebuddy Genie</li>
                     </ul>
                 </div>
                 <div className="ml-3">
-                    <h1 className="text-[18px] mb-3">Contact Us</h1>
-                    <ul className="text-slate-400 mb-7">
-                        <li className="mb-4">Help & Support</li>
-                        <li className="mb-4">Partner with us</li>
-                        <li className="mb-4">Rate with us</li>
+                    <h1 className="md:text-[18px] text-sm mb-3">Contact Us</h1>
+                    <ul className="text-slate-400 mb-7 md:text-sm text-[11px]">
+                        <li className="mb-2 md:mb-4">Help & Support</li>
+                        <li className="mb-2 md:mb-4">Partner with us</li>
+                        <li className="mb-2 md:mb-4">Rate with us</li>
                     </ul>
-                    <h1 className="text-[18px] mb-3">Legal</h1>
-                    <ul className="text-slate-400 ">
-                        <li className="mb-4">Terms & Conditions</li>
-                        <li className="mb-4">Cookie Policy</li>
-                        <li className="mb-4">Privacy Policy</li>
+                    <h1 className="md:text-[18px] text-sm mb-3">Legal</h1>
+                    <ul className="text-slate-400 md:text-sm text-[11px]">
+                        <li className="mb-2 md:mb-4">Terms & Conditions</li>
+                        <li className="mb-2 md:mb-4">Cookie Policy</li>
+                        <li className="mb-2 md:mb-4">Privacy Policy</li>
                     </ul>
                 </div>
                 <div className="ml-3">
-                    <h1 className="text-[18px] mb-3">We deliver to:</h1>
-                    <ul className="text-slate-400">
+                    <h1 className="md:text-[18px] text-sm mb-3">
+                        We deliver to:
+                    </h1>
+                    <ul className="text-slate-400 md:text-sm text-[11px]">
                         {initialCities.map((city, index) => (
-                            <li key={index} className="mb-4">
+                            <li key={index} className="mb-2 md:mb-4">
                                 {city}
                             </li>
                         ))}
                     </ul>
                     <button
                         onClick={handleToggleCities}
-                        className="px-4 py-3 mt-2 text-blue-400 duration-200 ease-in-out transform bg-opacity-75 rounded-md bg-slate-700 hover:bg-opacity-45 active:bg-opacity-25 hover:scale-110"
+                        className="px-2 py-1 mt-2 text-blue-400 duration-200 ease-in-out transform bg-opacity-75 rounded-md md:px-4 md:py-3 bg-slate-700 hover:bg-opacity-45 active:bg-opacity-25 hover:scale-110"
                     >
                         {showAllCities ? "Show Less" : "Show More"}
                     </button>
@@ -195,15 +201,17 @@ const Footer = () => {
             </div>
 
             {showAllCities && (
-                <div className="flex justify-around h-auto p-5 min-w-screen bg-gradient-to-b from-slate-950 to-slate-800 text-slate-400">
-                    <h1 className="text-[18px] mb-3 text-slate-300">
-                        All Cities:
-                    </h1>
-                    <ul className="grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="p-5 min-w-screen bg-gradient-to-b from-slate-950 to-slate-800 text-slate-400">
+                    <div className="flex justify-center mb-4">
+                        <h1 className="text-[18px] text-slate-300">
+                            All Cities:
+                        </h1>
+                    </div>
+                    <ul className="flex flex-wrap justify-evenly gap-y-4">
                         {additionalCities.map((city, index) => (
                             <li
                                 key={index}
-                                className="flex justify-center py-2 mb-1 duration-300 ease-in-out rounded-md cursor-pointer text-slate-400 hover:text-slate-200 hover:translate-x-2 hover:bg-slate-600 hover:bg-opacity-65"
+                                className="flex text-[12px] md:text-base justify-center py-2 mb-1 duration-300 ease-in-out rounded-md cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-slate-600 hover:bg-opacity-65"
                             >
                                 {city}
                             </li>

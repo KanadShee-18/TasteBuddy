@@ -13,8 +13,8 @@ const DealSlider = ({ offerData }) => {
     };
 
     return (
-        <div className="relative">
-            <div className="absolute flex items-center gap-1 justify-end -top-10 -right-14 z-[5]">
+        <div className="relative md:mx-0 mx-[calc(5%)]">
+            <div className="absolute flex items-center gap-1 justify-end md:-top-10 md:-right-14 -top-10 -right-4 z-[5]">
                 <button
                     onClick={slideLeft}
                     className="p-2 rounded-full bg-slate-200 text-slate-500 hover:text-slate-50 hover:bg-slate-300"
@@ -30,7 +30,7 @@ const DealSlider = ({ offerData }) => {
             </div>
             <div
                 id="DealSlider"
-                className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
+                className="w-full h-auto overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
             >
                 {offerData?.map((eachData, index) => (
                     <Offer key={index} dealData={eachData} />
