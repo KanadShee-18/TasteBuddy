@@ -103,7 +103,6 @@ const Footer = () => {
         }
     }, [location]);
     const { cities } = useFetchRestaurants(lat, lng); // Assume you provide lat and lng as needed
-    console.log("Cities: ", cities);
 
     const [showAllCities, setShowAllCities] = useState(false);
 

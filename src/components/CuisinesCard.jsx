@@ -1,9 +1,7 @@
 import React from "react";
 
 const CuisinesCard = (props) => {
-    // console.log("this is cuisine card");
     const { text } = props;
-    // console.log("text", text);
 
     return (
         <div>

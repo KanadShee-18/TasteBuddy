@@ -102,9 +102,6 @@ const Body = () => {
         setIsSortedByCost(!isSortedByCost);
     };
 
-    console.log("Body Cuisines: ", cuisines);
-    console.log("Fetching res: ", fetchedListOfRestaurants);
-
     const onlineStatus = useOnlineStatus();
     if (onlineStatus === false) return <Offline />;
 

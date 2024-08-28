@@ -17,8 +17,6 @@ const useFetchRestaurants = (lat, lng) => {
                 const response = await fetch(swiggyAPI(lat, lng));
                 const json = await response.json();
 
-                console.log(json);
-
                 setImageOfFood(
                     json?.data?.cards[0]?.card?.card?.imageGridCards?.info
                 );
@@ -39,7 +37,6 @@ const useFetchRestaurants = (lat, lng) => {
                     json?.data?.cards[10]?.card?.card?.cities || [];
                 const allCities = cityArrays.flat().map((city) => city.text);
                 setCities(allCities);
-                console.log("All cities: ", allCities);
 
                 setLoading(false);
             } catch (error) {
@@ -49,8 +46,6 @@ const useFetchRestaurants = (lat, lng) => {
 
         fetchData();
     }, [lat, lng]);
-
-    console.log("Cuisines: ", cuisines);
 
     return {
         imageOfFoods,

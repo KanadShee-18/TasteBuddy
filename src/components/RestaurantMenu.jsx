@@ -25,16 +25,12 @@ const RestaurantMenu = () => {
         }
     }, [location]);
 
-    console.log("lat: ", lat, "lng: ", lng);
-
     const stripHtmlTags = (html) => {
         const doc = new DOMParser().parseFromString(html, "text/html");
         return doc.body.textContent || "";
     };
 
     const resInfo = useRestaurantMenu(lat, lng, resId);
-
-    console.log("resInfo: ", resInfo);
 
     if (!resInfo) return <ShimmerResMenu />;
 
@@ -75,8 +71,6 @@ const RestaurantMenu = () => {
 
     const feesDetails = feeDetails?.message;
     const completeAddress = resAdd?.[0]?.card?.card?.completeAddress;
-
-    console.log("resadd: ", completeAddress);
 
     return (
         <div className="min-h-screen pt-5 m-auto menu lg:w-1/2 md:w-2/3 sm:w-3/4">

@@ -2,8 +2,6 @@ import React from "react";
 import DealSlider from "./DealSlider";
 
 const RestaurantDeals = ({ itemDeals }) => {
-    console.log("itemDeals: ", itemDeals);
-
     return itemDeals.length > 0 ? (
         <div className="mx-8 mt-5 deals ">
             <h2 className="w-full mb-4 text-base font-semibold md:text-xl font-txtFont">
