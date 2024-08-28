@@ -15,10 +15,10 @@ const RestaurantHeader = ({
     feesDetails,
 }) => (
     <div>
-        <p className="text-slate-400 text-[10px] font-txtFont">
+        <p className="text-slate-600 text-[10px] font-txtFont">
             Home/{city}/{name}
         </p>
-        <h1 className="w-full pt-5 pb-2 text-2xl font-semibold bg-white resName top-20 font-txtFont">
+        <h1 className="w-full pt-5 text-2xl font-semibold bg-white resName top-20 font-txtFont">
             {name}
         </h1>
         <p className="text-slate-500 text-[12px] font-medium font-txtFont">
@@ -42,7 +42,7 @@ const RestaurantHeader = ({
                     <p className="mr-2 text-[14px] font-txtFont font-medium">
                         Outlet &nbsp;{" "}
                     </p>
-                    <p className="text-[14px] font-txtFont font-normal text-gray-500 mr-2">
+                    <p className="text-[14px] font-txtFont font-medium text-gray-500 mr-2">
                         {areaName}
                     </p>
                     <i className="fa-solid fa-caret-down mt-0.5 text-[#ff5d0d] cursor-pointer"></i>

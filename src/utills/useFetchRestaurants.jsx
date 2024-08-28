@@ -7,6 +7,7 @@ const useFetchRestaurants = (lat, lng) => {
     const [cuisines, setCuisines] = useState([]);
     const [listOfTopRes, setListOfTopRes] = useState([]);
     const [filteredTopRes, setFilteredTopRes] = useState([]);
+    const [cities, setCities] = useState([]);
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -34,6 +35,12 @@ const useFetchRestaurants = (lat, lng) => {
                     json?.data?.cards[4]?.card?.card?.gridElements
                         ?.infoWithStyle?.restaurants
                 );
+                const cityArrays =
+                    json?.data?.cards[10]?.card?.card?.cities || [];
+                const allCities = cityArrays.flat().map((city) => city.text);
+                setCities(allCities);
+                console.log("All cities: ", allCities);
+
                 setLoading(false);
             } catch (error) {
                 setLoading(false);
@@ -51,6 +58,7 @@ const useFetchRestaurants = (lat, lng) => {
         listOfTopRes,
         filteredTopRes,
         listOfRestaurants,
+        cities,
         setFilteredTopRes,
         setListOfTopRes,
         setListOfRestaurants,

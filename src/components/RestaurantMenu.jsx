@@ -15,7 +15,6 @@ const RestaurantMenu = () => {
 
     const location = useSelector((store) => store.location?.locationDetails);
 
-    // const { lat, lng } = locDetails || {};
     const [lat, setLat] = useState(location?.lat);
     const [lng, setLng] = useState(location?.lng);
 
@@ -80,7 +79,7 @@ const RestaurantMenu = () => {
     console.log("resadd: ", completeAddress);
 
     return (
-        <div className="pt-5 m-auto menu lg:w-1/2 md:w-2/3 sm:w-3/4">
+        <div className="min-h-screen pt-5 m-auto menu lg:w-1/2 md:w-2/3 sm:w-3/4">
             <RestaurantHeader
                 name={name}
                 city={city}

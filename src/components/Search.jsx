@@ -1,18 +1,34 @@
 import useFetchRestaurants from "../utills/useFetchRestaurants";
 import { IMG_URL, CDN_URL } from "../utills/constants.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Search = () => {
     const [searchItem, setSearchItem] = useState("");
-    const { imageOfFoods, listOfTopRes } = useFetchRestaurants(
-        "https://foodfire.onrender.com/api/restaurants?lat=18.9486&lng=72.83662&page_type=DESKTOP_WEB_LISTING"
-    );
+    const location = useSelector((store) => store.location?.locationDetails);
+
+    const [lat, setLat] = useState(location?.lat);
+    const [lng, setLng] = useState(location?.lng);
+
+    useEffect(() => {
+        if (location) {
+            setLat(location.lat);
+            setLng(location.lng);
+        }
+    }, [location]);
+
+    // console.log("lat: ", lat, "lng: ", lng);
+
+    const { imageOfFoods, listOfTopRes } = useFetchRestaurants(lat, lng);
 
     const limitFoodItems = imageOfFoods?.slice(0, 12);
+    console.log("From search: lat: ", lat, "lng: ", lng);
+
+    console.log("limitFoodItems: ", limitFoodItems);
 
     return (
-        <div>
+        <div className="min-h-screen ">
             <div className="flex flex-col">
                 <h2 className="text-center font-txtFont text-[30px] font-semibold my-4 text-gray-600">
                     Search your food item here:{" "}
@@ -63,18 +79,19 @@ const Search = () => {
                                             eachItem?.info?.cloudinaryImageId
                                         }
                                         alt="search"
-                                        className="w-16 h-16 rounded-full"
+                                        className="w-16 h-16 duration-200 ease-in-out rounded-tr-sm rounded-bl-sm rounded-tl-3xl rounded-br-3xl hover:scale-110"
                                     />
-                                    <div className="ml-3 font-txtFont">
-                                        <p className="font-medium text-[12px]">
+                                    <div className="ml-1 font-txtFont">
+                                        <p className="text-sm font-semibold text-slate-600">
                                             {eachItem?.info.name}
                                         </p>
-                                        <p className="text-[11px] font-semibold text-slate-700">
+                                        <p className="text-[12px] font-semibold text-slate-500 italic">
                                             {eachItem?.info?.cuisines.join(
                                                 ", "
                                             )}
                                         </p>
                                     </div>
+                                    <div className="w-full h-[1px] bg-slate-400"></div>
                                 </Link>
                             </div>
                         ))}
