@@ -39,7 +39,7 @@ const Cart = () => {
                     </span>
                     <div className="w-8/12">
                         <h2 className="font-semibold text-md">Account</h2>
-                        <p className="text-gray-600 md:text-sm text-[12px]">
+                        <p className="text-gray-600 font-medium md:text-sm text-[12px]">
                             To place your order now, log in to your existing
                             account or sign up.
                         </p>
@@ -68,10 +68,10 @@ const Cart = () => {
                 {/* Delivery Address Section */}
                 <div className="relative flex items-start px-6 mb-8 bg-white py-9 text-slate-700">
                     <span className="flex justify-center absolute top-1/4 -left-7 bg-white border-black rounded-sm shadow-[0px_2px_8px_0px_#718096]">
-                        <i className="p-3 text-xl fa-solid fa-location-dot text-neutral-800"></i>
+                        <i className="p-3 text-xl fa-solid fa-location-dot text-slate-700"></i>
                     </span>
                     <div className="w-11/12">
-                        <h2 className="font-semibold text-md">
+                        <h2 className="font-semibold text-slate-600 text-md">
                             Delivery address
                         </h2>
                     </div>
@@ -80,10 +80,12 @@ const Cart = () => {
                 {/* Payment Section */}
                 <div className="relative flex items-start px-6 bg-white py-9 text-slate-700">
                     <span className="flex justify-center absolute top-1/4 -left-7 bg-white border-black rounded-sm shadow-[0px_2px_8px_0px_#718096]">
-                        <i className="p-3 text-xl fa-solid fa-wallet text-neutral-800"></i>
+                        <i className="p-3 text-xl fa-solid fa-wallet text-slate-700"></i>
                     </span>
                     <div className="w-11/12">
-                        <h2 className="font-semibold text-md">Payment</h2>
+                        <h2 className="font-semibold text-slate-600 text-md">
+                            Payment
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -118,8 +120,23 @@ const Cart = () => {
                                     key={index}
                                     className="flex items-center justify-between p-2 mb-8 rounded-md bg-blue-50"
                                 >
-                                    <div>
-                                        <p className="text-sm text-gray-800">
+                                    <div className="flex flex-col items-center justify-center">
+                                        <span>
+                                            <img
+                                                src={
+                                                    IMAGE_URL +
+                                                    item.card.info.imageId
+                                                }
+                                                alt="Restaurant Logo"
+                                                className="object-cover w-12 h-12 duration-200 rounded-tr-xl rounded-bl-xl hover:scale-95"
+                                            />
+                                        </span>
+                                        <p className="mt-2 text-sm font-medium text-gray-800">
+                                            ₹{itemTotal.toFixed(2)}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col items-end">
+                                        <p className="text-sm font-medium text-end text-slate-700">
                                             {item.card.info.name}
                                         </p>
                                         <div className="flex items-center justify-center w-[100px] px-2 py-[6px] mt-2 bg-blue-400 bg-opacity-15 rounded-md font-semibold">
@@ -143,21 +160,6 @@ const Cart = () => {
                                                 +
                                             </button>
                                         </div>
-                                    </div>
-                                    <div className="flex flex-col items-center justify-center">
-                                        <span>
-                                            <img
-                                                src={
-                                                    IMAGE_URL +
-                                                    item.card.info.imageId
-                                                }
-                                                alt="Restaurant Logo"
-                                                className="object-cover w-12 h-12 duration-200 rounded-tl-3xl rounded-br-3xl hover:scale-95"
-                                            />
-                                        </span>
-                                        <p className="mt-2 text-sm font-medium text-gray-800">
-                                            ₹{itemTotal.toFixed(2)}
-                                        </p>
                                     </div>
                                 </div>
                             );
