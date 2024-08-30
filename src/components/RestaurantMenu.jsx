@@ -97,15 +97,6 @@ const RestaurantMenu = () => {
                     <img className="w-[40px] ml-2" src={rightMenu} alt="" />
                 </span>
             </div>
-            {/* <div className="flex flex-col mb-8">
-                <div className="w-full h-[45px] m-auto border-1 border-black rounded-md flex justify-center items-center shadow-[0px_8px_19px_0px_#718096] ">
-                    <input
-                        type="text"
-                        placeholder="Search your food item here"
-                        className="w-full px-2 text-base text-center border-none outline-none font-txtFont"
-                    />
-                </div>
-            </div> */}
             {categories.map((c, index) => (
                 <RestaurantCategory
                     key={c?.card?.card?.title}

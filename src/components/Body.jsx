@@ -207,7 +207,7 @@ const Body = () => {
                     )}
                 </button>
                 <button
-                    className={`w-auto h-10 md:text-base text-[12px] px-2 mt-3 font-semibold border border-slate-300 rounded-md font-txtFont ${
+                    className={`hidden xsm:block w-auto h-10 md:text-base text-[12px] px-2 mt-3 font-semibold border border-slate-300 rounded-md font-txtFont ${
                         isSortedByCost
                             ? "text-slate-700 bg-gradient-to-br from-slate-300 to-slate-100"
                             : "text-slate-500 bg-gradient-to-br from-slate-100 to-slate-50"
@@ -223,7 +223,7 @@ const Body = () => {
                     )}
                 </button>
             </div>
-            <div className="flex flex-wrap justify-between allRestaurantContainer mt-15">
+            <div className="flex flex-wrap justify-around allRestaurantContainer mt-15">
                 {listOfRestaurants && listOfRestaurants.length > 0 ? (
                     listOfRestaurants.map((eachRes) => (
                         <Link

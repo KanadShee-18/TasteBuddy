@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IMAGE_URL } from "../utills/constants";
 import rollImg from "../Images/cart_dish.png";
-import { addItem, clearCart } from "../utills/cartSlice";
+import { addItem, clearCart, removeItem } from "../utills/cartSlice";
 
 const Cart = () => {
     const cartItems = useSelector((store) => store.cart.items);
-    let totalBill = 0;
-
     const dispatch = useDispatch();
+
+    const handleAddItem = (item) => {
+        dispatch(addItem(item));
+    };
+
+    const handleRemoveItem = (item) => {
+        dispatch(removeItem(item));
+    };
 
     const handleClearCart = () => {
         dispatch(clearCart());
     };
+
+    const totalBill = useMemo(() => {
+        return cartItems.reduce((total, item) => {
+            const price =
+                item?.card?.info?.price || item.card.info.defaultPrice;
+            return total + (price / 100) * item.quantity;
+        }, 0);
+    }, [cartItems]);
 
     return (
         <div className="flex flex-col md:flex-row bg-neutral-200 p-4 min-h-screen px-[calc(10%)] font-txtFont">
@@ -47,7 +61,7 @@ const Cart = () => {
                         </div>
                     </div>
                     <div>
-                        <img src={rollImg} alt="" />
+                        <img src={rollImg} alt="Dish" />
                     </div>
                 </div>
 
@@ -94,45 +108,57 @@ const Cart = () => {
                         </div>
 
                         {cartItems.map((item, index) => {
-                            // totalBill += item.card.info.price / 100;
-                            {
-                                item?.card?.info?.price
-                                    ? (totalBill += item.card.info.price / 100)
-                                    : (totalBill +=
-                                          item.card.info.defaultPrice / 100);
-                            }
+                            const price =
+                                item?.card?.info?.price ||
+                                item.card.info.defaultPrice;
+                            const itemTotal = (price / 100) * item.quantity;
+
                             return (
                                 <div
                                     key={index}
-                                    className="flex items-center justify-between mb-4"
+                                    className="flex items-center justify-between mb-8"
                                 >
                                     <div>
                                         <p className="text-sm text-gray-800">
                                             {item.card.info.name}
                                         </p>
-                                        <div className="flex items-center mt-2">
-                                            <button className="px-2 text-green-500">
+                                        <div className="flex items-center justify-center w-[100px] px-2 py-[6px] mt-2 bg-blue-400 bg-opacity-20 rounded-md font-semibold">
+                                            <button
+                                                className="px-2 text-lg text-green-600 duration-200 bg-opacity-25 rounded-full bg-cyan-700 hover:bg-opacity-60 hover:scale-105 hover:text-white"
+                                                onClick={() =>
+                                                    handleRemoveItem(item)
+                                                }
+                                            >
                                                 -
                                             </button>
-                                            <span className="px-4 text-sm">
-                                                1
+                                            <span className="px-4 text-lg font-semibold text-slate-700">
+                                                {item.quantity}
                                             </span>
-                                            <button className="px-2 text-green-500">
+                                            <button
+                                                className="px-2 text-lg text-green-600 duration-200 bg-opacity-25 rounded-full bg-cyan-700 hover:bg-opacity-60 hover:scale-105 hover:text-white"
+                                                onClick={() =>
+                                                    handleAddItem(item)
+                                                }
+                                            >
                                                 +
                                             </button>
                                         </div>
                                     </div>
-                                    {item?.card?.info?.price ? (
-                                        <p className="text-sm text-gray-800">
-                                            {" "}
-                                            ₹{item.card.info.price / 100}
+                                    <div className="flex flex-col items-center justify-center">
+                                        <span>
+                                            <img
+                                                src={
+                                                    IMAGE_URL +
+                                                    item.card.info.imageId
+                                                }
+                                                alt="Restaurant Logo"
+                                                className="object-cover w-12 h-12 duration-200 rounded-tl-3xl rounded-br-3xl hover:scale-95"
+                                            />
+                                        </span>
+                                        <p className="text-sm font-medium text-gray-800">
+                                            ₹{itemTotal.toFixed(2)}
                                         </p>
-                                    ) : (
-                                        <p className="text-sm text-gray-800">
-                                            {" "}
-                                            ₹{item.card.info.defaultPrice / 100}
-                                        </p>
-                                    )}
+                                    </div>
                                 </div>
                             );
                         })}
@@ -148,7 +174,7 @@ const Cart = () => {
                     <div className="w-[60%] drop-shadow-sm border-1 border-black rounded-md shadow-[0px_2px_8px_0px_#718096] flex items-center justify-center">
                         <input
                             type="text"
-                            placeholder="''Any suggestions? We will pass it on..."
+                            placeholder="Any suggestions? We will pass it on..."
                             className="w-full p-2 text-sm text-center border border-none rounded-sm outline-none"
                         />
                     </div>
@@ -157,7 +183,6 @@ const Cart = () => {
                             className="w-[100px] font-medium bg-orange-600 text-white py-2 rounded-sm hover:scale-95 duration-200 hover:bg-neutral-950 active:bg-orange-600"
                             onClick={handleClearCart}
                         >
-                            {" "}
                             Clear
                         </button>
                     </div>
@@ -175,7 +200,9 @@ const Cart = () => {
                 <div className="pt-4 mt-4 border-t">
                     <h3 className="font-semibold text-md">Bill Details</h3>
                     <div className="flex justify-between mt-2">
-                        <p className="text-sm text-gray-600">Item Total</p>
+                        <p className="text-sm font-medium text-gray-600">
+                            Item Total
+                        </p>
                         <p className="text-sm">₹{totalBill.toFixed(2)}</p>
                     </div>
                     <div className="flex justify-between mt-2">
@@ -192,41 +219,17 @@ const Cart = () => {
                         <p className="text-sm text-gray-600">
                             GST and Restaurant Charges
                         </p>
-                        <p className="text-sm">₹27.54</p>
+                        <p className="text-sm">₹18</p>
                     </div>
                 </div>
+                <div className="m-auto my-5 w-full bg-slate-500 h-[2px]"></div>
 
                 {/* Total Amount */}
-                <div className="flex justify-between mt-4 pt-4 border-t-[3px] border-neutral-800 text-md font-bold">
-                    <p className="text-md">TO PAY</p>
-                    <p className="text-md">
-                        ₹{(totalBill + 20 + 6 + 27.54).toFixed(2)}
+                <div className="flex justify-between">
+                    <h3 className="text-lg font-semibold">To Pay</h3>
+                    <p className="text-lg font-semibold">
+                        ₹{(totalBill + 44).toFixed(2)}
                     </p>
-                </div>
-
-                <div className="w-full h-3 mt-10 bg-slate-200"></div>
-
-                {/* New Section: Review and Cancellation Policy */}
-                <div className="p-4 mt-6 border-2 border-gray-200">
-                    <h4 className="text-sm font-semibold">
-                        Review your order and address details to avoid
-                        cancellations
-                    </h4>
-                    <p className="text-[12px] text-gray-600 mt-2">
-                        <span className="font-bold text-red-600">Note:</span> If
-                        you cancel within 60 seconds of placing your order, a
-                        100% refund will be issued. No refund for cancellations
-                        made after 60 seconds.
-                    </p>
-                    <p className="text-[12px] text-gray-600 mt-1">
-                        Avoid cancellation as it leads to food wastage.
-                    </p>
-                    <a
-                        href="#"
-                        className="inline-block mt-2 text-sm font-semibold text-orange-600 underline"
-                    >
-                        Read cancellation policy
-                    </a>
                 </div>
             </div>
         </div>

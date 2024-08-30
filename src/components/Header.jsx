@@ -119,7 +119,7 @@ const Header = () => {
             <div
                 className={`lg:flex items-center ${
                     isOpen ? "block" : "hidden"
-                } lg:shadow-none md:shadow-none md:static absolute top-20 right-0 ${
+                } lg:shadow-none md:shadow-none lg:static absolute top-20 right-0 ${
                     isOpen
                         ? "bg-gradient-to-tl from-slate-500 to-transparent sm:shadow-lg rounded-md p-2"
                         : ""
