@@ -116,15 +116,15 @@ const Cart = () => {
                             return (
                                 <div
                                     key={index}
-                                    className="flex items-center justify-between mb-8"
+                                    className="flex items-center justify-between p-2 mb-8 rounded-md bg-blue-50"
                                 >
                                     <div>
                                         <p className="text-sm text-gray-800">
                                             {item.card.info.name}
                                         </p>
-                                        <div className="flex items-center justify-center w-[100px] px-2 py-[6px] mt-2 bg-blue-400 bg-opacity-20 rounded-md font-semibold">
+                                        <div className="flex items-center justify-center w-[100px] px-2 py-[6px] mt-2 bg-blue-400 bg-opacity-15 rounded-md font-semibold">
                                             <button
-                                                className="px-2 text-lg text-green-600 duration-200 bg-opacity-25 rounded-full bg-cyan-700 hover:bg-opacity-60 hover:scale-105 hover:text-white"
+                                                className="px-2 text-lg text-green-500 duration-200 rounded-full bg-opacity-15 bg-cyan-700 hover:bg-opacity-60 hover:scale-105 hover:text-white"
                                                 onClick={() =>
                                                     handleRemoveItem(item)
                                                 }
@@ -135,7 +135,7 @@ const Cart = () => {
                                                 {item.quantity}
                                             </span>
                                             <button
-                                                className="px-2 text-lg text-green-600 duration-200 bg-opacity-25 rounded-full bg-cyan-700 hover:bg-opacity-60 hover:scale-105 hover:text-white"
+                                                className="px-2 text-lg text-green-500 duration-200 rounded-full bg-opacity-15 bg-cyan-700 hover:bg-opacity-60 hover:scale-105 hover:text-white"
                                                 onClick={() =>
                                                     handleAddItem(item)
                                                 }
@@ -155,7 +155,7 @@ const Cart = () => {
                                                 className="object-cover w-12 h-12 duration-200 rounded-tl-3xl rounded-br-3xl hover:scale-95"
                                             />
                                         </span>
-                                        <p className="text-sm font-medium text-gray-800">
+                                        <p className="mt-2 text-sm font-medium text-gray-800">
                                             ₹{itemTotal.toFixed(2)}
                                         </p>
                                     </div>
