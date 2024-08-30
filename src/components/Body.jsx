@@ -53,7 +53,7 @@ const Body = () => {
             setListOfRestaurants(fetchedListOfRestaurants);
         } else {
             const sortedList = [...fetchedListOfRestaurants].filter(
-                (res) => res.info.avgRating >= 4.5
+                (res) => res.info.avgRating >= 4.0
             );
             setListOfRestaurants(sortedList);
         }
