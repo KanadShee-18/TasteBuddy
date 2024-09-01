@@ -44,7 +44,7 @@ const Welcome = () => {
             />
           </div>
 
-          <div className="flex items-center justify-center w-full ml-2 md:h-12 h-9 rounded-tl-3xl rounded-br-3xl mt-7 bg-gradient-to-br opacity-70 from-purple-600 via-pink-600 to-blue-500">
+          <div className="flex items-center justify-center w-full ml-2 rounded-tr-md rounded-bl-md md:h-12 h-9 rounded-tl-3xl rounded-br-3xl mt-7 bg-gradient-to-br opacity-70 from-purple-600 via-pink-600 to-blue-500">
             <p className="text-base font-medium text-center md:text-xl text-slate-200">
               Lets enter in the food world
             </p>
