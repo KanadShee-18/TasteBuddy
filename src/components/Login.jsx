@@ -1,13 +1,31 @@
 import { RxCross2 } from "react-icons/rx";
 import CART_DISH from "../Images/cart_dish.png";
 import { useState } from "react";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { IoEye, IoEyeOffSharp } from "react-icons/io5";
 
 const Login = (props) => {
-  const [phone, setPhone] = useState("");
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState(false);
   const { setLoginModel } = props;
+  const navigate = useNavigate();
+
+  const toggleEye = () => {
+    setOpen(!open);
+  };
+
+  const handleButtonClick = () => {
+    if (email && password) {
+      // If both email and password are filled, navigate to the home page
+      navigate("/home");
+    } else {
+      // Display an error message if email or password is empty
+      setAlert(true);
+    }
+  };
+
   return (
     <div
       className="relative z-50"
@@ -16,27 +34,27 @@ const Login = (props) => {
       aria-modal="true"
     >
       <div
-        className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
+        className="fixed inset-0 transition-opacity bg-gray-800 bg-opacity-75"
         aria-hidden="true"
       ></div>
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div className="flex min-h-full items-end justify-end p-4 text-center sm:items-center sm:p-0">
-          <div className="p-10 relative transform overflow-hidden bg-white text-left h-screen shadow-xl transition-all sm:w-4/12 sm:max-w-lg">
+        <div className="flex items-end justify-end min-h-full p-4 text-center sm:items-center sm:p-0">
+          <div className="relative h-screen p-10 overflow-hidden text-left transition-all transform shadow-xl bg-gradient-to-b from-white to-blue-200 sm:w-4/12 sm:max-w-lg">
             <button
               onClick={() => setLoginModel(false)}
-              className="bg-slate-300 p-2 rounded-3xl text-2xl text-slate-700 font-semibold hover:bg-slate-500 hover:text-white hover:font-bold"
+              className="p-2 text-2xl font-semibold bg-slate-300 rounded-3xl text-slate-700 hover:bg-slate-500 hover:text-white hover:font-bold"
             >
               <RxCross2 />
             </button>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-txtFont mt-3 font-semibold">
+                <h1 className="mt-3 text-3xl font-semibold font-txtFont">
                   Login
                 </h1>
                 <h1 className="mt-2">
                   or{" "}
-                  <span className="text-orange-500 font-txtFont text-sm">
+                  <span className="text-sm text-orange-500 font-txtFont">
                     create an account
                   </span>
                 </h1>
@@ -45,32 +63,41 @@ const Login = (props) => {
             </div>
             <hr className="w-12 bg-black h-[2px] mt-3 border-0" />
 
-            <PhoneInput
-              placeholder="Phone Number"
-              value={phone}
-              onChange={() => setPhone(phone)}
-              containerStyle={{ marginTop: "20px" }}
-              inputStyle={{
-                width: "100%",
-                height: "63px",
-                backgroundColor: "none",
-                paddingLeft: "3rem",
-                fontSize: "1rem",
-              }}
-            />
-
-            <input
-              className="p-5 border font-txtFont text-center border-gray-300 mt-4 mb-7 w-full"
-              type="text"
-              placeholder="One Time Password"
-            />
-
-            <Link to="/home">
-              <button className="bg-orange-500 w-full mt-7 h-16 px-4 text-white font-bold hover:bg-orange-600">
-                LOG IN
+            <div className="w-full rounded font-txtFont h-16 mt-10 border-[1px] flex border-orange-500 justify-center items-center">
+              <input
+                className="text-orange-500 bg-transparent border-none outline-none placeholder:text-orange-300"
+                type="email"
+                placeholder="Enter your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="w-full rounded font-txtFont h-16 mt-10 border-[1px] flex justify-center items-center border-orange-500">
+              <input
+                className="w-4/5 px-2 text-orange-500 bg-transparent border-none outline-none placeholder:text-orange-300"
+                type={open ? "text" : "password"}
+                placeholder="Enter a Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button className="text-lg text-orange-600" onClick={toggleEye}>
+                {open ? <IoEye /> : <IoEyeOffSharp />}
               </button>
-            </Link>
-            <h1 className="mt-4 font-medium text-sm text-slate-700 font-txtFont">
+            </div>
+
+            <button
+              className="w-full h-16 px-4 font-semibold text-white bg-orange-500 mt-7 hover:bg-orange-600"
+              onClick={handleButtonClick}
+            >
+              LOG IN
+            </button>
+            {alert && (
+              <p className="w-full mt-2 text-sm text-center text-orange-500 font-txtFont">
+                Please fill both email and password.
+              </p>
+            )}
+
+            <h1 className="mt-4 text-sm font-medium text-slate-700 font-txtFont">
               By clicking on Login, I accept the Terms and Condition & <br />
               Privacy Policy
             </h1>
