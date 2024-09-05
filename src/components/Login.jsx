@@ -63,7 +63,7 @@ const Login = (props) => {
             </div>
             <hr className="w-12 bg-black h-[2px] mt-3 border-0" />
 
-            <div className="w-full rounded font-txtFont h-16 mt-10 border-[1px] flex border-orange-500 justify-center items-center">
+            <div className="w-full rounded font-txtFont h-16 mt-10 border-[1px] flex border-orange-500 justify-start pl-4 items-center">
               <input
                 className="text-orange-500 bg-transparent border-none outline-none placeholder:text-orange-300"
                 type="email"
@@ -72,7 +72,7 @@ const Login = (props) => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="w-full rounded font-txtFont h-16 mt-10 border-[1px] flex justify-center items-center border-orange-500">
+            <div className="w-full pl-2 rounded font-txtFont h-16 mt-10 border-[1px] flex justify-between items-center border-orange-500">
               <input
                 className="w-4/5 px-2 text-orange-500 bg-transparent border-none outline-none placeholder:text-orange-300"
                 type={open ? "text" : "password"}
@@ -80,7 +80,10 @@ const Login = (props) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button className="text-lg text-orange-600" onClick={toggleEye}>
+              <button
+                className="mr-3 text-lg text-orange-600"
+                onClick={toggleEye}
+              >
                 {open ? <IoEye /> : <IoEyeOffSharp />}
               </button>
             </div>
