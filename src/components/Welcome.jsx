@@ -75,8 +75,12 @@ const Welcome = () => {
         {/* Image */}
         <img src={FOOD_IMG} alt="Food" className="object-cover w-full h-full" />
       </div>
-      {loginModel && <Login setLoginModel={setLoginModel} />}
-      {signUpModel && <SignUp setSignUpModel={setSignUpModel} />}
+      {loginModel && (
+        <Login setLoginModel={setLoginModel} setSignUpModel={setSignUpModel} />
+      )}
+      {signUpModel && (
+        <SignUp setSignUpModel={setSignUpModel} setLoginModel={setLoginModel} />
+      )}
     </div>
   );
 };

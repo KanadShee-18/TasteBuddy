@@ -1,21 +1,42 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import CART_DISH from "../Images/cart_dish.png";
 import { Link, useNavigate } from "react-router-dom";
+import { checkValidate } from "../utills/validate";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utills/firebase";
 
 const SignUp = (props) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [alert, setAlert] = useState(false);
+  const [errMsg, setErrMsg] = useState(null);
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
   const { setSignUpModel } = props;
 
   const handleButtonClick = () => {
-    if (email && name) {
-      navigate("/home");
-    } else {
-      setAlert(true);
+    const nameValue = name.current.value;
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
+    const errMsg = checkValidate(nameValue, emailValue, passwordValue);
+    setErrMsg(errMsg);
+
+    if (!errMsg) {
+      // sign up
+      createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/home");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMsg(errorMessage);
+        });
+      // sign in
     }
   };
 
@@ -47,7 +68,7 @@ const SignUp = (props) => {
                 </h1>
                 <h1 className="mt-2">
                   or{" "}
-                  <span className="text-sm text-orange-600 font-txtFont">
+                  <span className="text-sm text-orange-600 cursor-pointer font-txtFont">
                     login to your account
                   </span>
                 </h1>
@@ -57,23 +78,27 @@ const SignUp = (props) => {
             <hr className="w-12 bg-black h-[2px] mt-3 border-0" />
             <div className="flex flex-col items-center justify-between w-full h-auto mt-8 border-2 font-txtFont border-slate-500">
               <input
-                type="text"
-                placeholder="Enter mobile Number"
-                className="w-full h-20 pl-3 border-none text-slate-700 bg-slate-500 bg-opacity-20 placeholder:text-orange-400 outline-orange-400 text-start"
-              />
-              <hr className="w-full h-[2px] bg-slate-400" />
-              <input
+                ref={name}
                 type="text"
                 placeholder="Enter your name"
                 className="w-full h-20 pl-3 border-none text-slate-700 bg-slate-500 bg-opacity-20 bg-none outline-orange-400 placeholder:text-orange-500 text-start"
-                onChange={(e) => setName(e.target.value)}
+                // onChange={(e) => setName(e.target.value)}
               />
               <hr className="w-full h-[2px] bg-slate-400" />
               <input
+                ref={email}
                 type="email"
-                placeholder="Enter yout email"
+                placeholder="Enter your email"
                 className="w-full h-20 pl-3 border-none text-slate-700 bg-slate-500 bg-opacity-20 placeholder:text-orange-500 bg-none outline-orange-400 text-start"
-                onChange={(e) => setEmail(e.target.value)}
+                // onChange={(e) => setEmail(e.target.value)}
+              />
+              <hr className="w-full h-[2px] bg-slate-400" />
+              <input
+                ref={password}
+                type="password"
+                placeholder="Enter a password"
+                className="w-full h-20 pl-3 border-none text-slate-700 bg-slate-500 bg-opacity-20 placeholder:text-orange-500 bg-none outline-orange-400 text-start"
+                // onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <p className="mt-16 text-sm font-medium text-blue-800 font-txtFont text-start">
@@ -90,9 +115,9 @@ const SignUp = (props) => {
               CONTINUE
             </button>
 
-            {alert && (
+            {errMsg && (
               <p className="w-full mt-2 text-sm text-center text-orange-500 font-txtFont">
-                Please fill both name and email.
+                {errMsg}
               </p>
             )}
 

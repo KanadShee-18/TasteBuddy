@@ -1,15 +1,22 @@
 import { RxCross2 } from "react-icons/rx";
 import CART_DISH from "../Images/cart_dish.png";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOffSharp } from "react-icons/io5";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utills/firebase";
+import { checkValidate } from "../utills/validate";
 
 const Login = (props) => {
   const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState(false);
+  const [errMsg, setErrMsg] = useState(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  const name = useRef(null);
   const { setLoginModel } = props;
+  const { setSignUpModel } = props;
+  console.log(setSignUpModel);
+
   const navigate = useNavigate();
 
   const toggleEye = () => {
@@ -17,13 +24,24 @@ const Login = (props) => {
   };
 
   const handleButtonClick = () => {
-    if (email && password) {
-      // If both email and password are filled, navigate to the home page
-      navigate("/home");
-    } else {
-      // Display an error message if email or password is empty
-      setAlert(true);
-    }
+    const nameValue = name.current.value;
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
+    const errMsg = checkValidate(nameValue, emailValue, passwordValue);
+    setErrMsg(errMsg);
+    signInWithEmailAndPassword(auth, emailValue, passwordValue)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/home");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrMsg(errorMessage);
+      });
   };
 
   return (
@@ -54,7 +72,10 @@ const Login = (props) => {
                 </h1>
                 <h1 className="mt-2">
                   or{" "}
-                  <span className="text-sm text-orange-500 font-txtFont">
+                  <span
+                    className="text-sm text-orange-500 cursor-pointer font-txtFont"
+                    onClick={() => setSignUpModel(true) && setLoginModel(false)}
+                  >
                     create an account
                   </span>
                 </h1>
@@ -66,19 +87,25 @@ const Login = (props) => {
             <div className="w-full rounded font-txtFont h-16 mt-10 border-[1px] flex border-orange-500 justify-start pl-4 items-center">
               <input
                 className="text-orange-500 bg-transparent border-none outline-none placeholder:text-orange-300"
+                type="text"
+                placeholder="Enter your name"
+                ref={name}
+              />
+            </div>
+            <div className="w-full rounded font-txtFont h-16 mt-10 border-[1px] flex border-orange-500 justify-start pl-4 items-center">
+              <input
+                className="text-orange-500 bg-transparent border-none outline-none placeholder:text-orange-300"
                 type="email"
                 placeholder="Enter your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                ref={email}
               />
             </div>
             <div className="w-full pl-2 rounded font-txtFont h-16 mt-10 border-[1px] flex justify-between items-center border-orange-500">
               <input
                 className="w-4/5 px-2 text-orange-500 bg-transparent border-none outline-none placeholder:text-orange-300"
                 type={open ? "text" : "password"}
-                placeholder="Enter a Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your Password"
+                ref={password}
               />
               <button
                 className="mr-3 text-lg text-orange-600"
@@ -94,9 +121,9 @@ const Login = (props) => {
             >
               LOG IN
             </button>
-            {alert && (
+            {errMsg && (
               <p className="w-full mt-2 text-sm text-center text-orange-500 font-txtFont">
-                Please fill both email and password.
+                {errMsg}
               </p>
             )}
 
