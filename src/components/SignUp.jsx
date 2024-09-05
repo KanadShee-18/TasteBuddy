@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import CART_DISH from "../Images/cart_dish.png";
 import { Link, useNavigate } from "react-router-dom";
+import { IoEye, IoEyeOffSharp } from "react-icons/io5";
 import { checkValidate } from "../utills/validate";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utills/firebase";
@@ -14,6 +15,10 @@ const SignUp = (props) => {
   const email = useRef(null);
   const password = useRef(null);
   const { setSignUpModel } = props;
+
+  const toggleEye = () => {
+    setOpen(!open);
+  };
 
   const handleButtonClick = () => {
     const nameValue = name.current.value;
@@ -82,24 +87,31 @@ const SignUp = (props) => {
                 type="text"
                 placeholder="Enter your name"
                 className="w-full h-20 pl-3 border-none text-slate-700 bg-slate-500 bg-opacity-20 bg-none outline-orange-400 placeholder:text-orange-500 text-start"
-                // onChange={(e) => setName(e.target.value)}
               />
               <hr className="w-full h-[2px] bg-slate-400" />
+
               <input
                 ref={email}
                 type="email"
                 placeholder="Enter your email"
                 className="w-full h-20 pl-3 border-none text-slate-700 bg-slate-500 bg-opacity-20 placeholder:text-orange-500 bg-none outline-orange-400 text-start"
-                // onChange={(e) => setEmail(e.target.value)}
               />
+
               <hr className="w-full h-[2px] bg-slate-400" />
-              <input
-                ref={password}
-                type="password"
-                placeholder="Enter a password"
-                className="w-full h-20 pl-3 border-none text-slate-700 bg-slate-500 bg-opacity-20 placeholder:text-orange-500 bg-none outline-orange-400 text-start"
-                // onChange={(e) => setEmail(e.target.value)}
-              />
+              <div className="flex justify-between w-full rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-orange-400">
+                <input
+                  ref={password}
+                  type={open ? "text" : "password"}
+                  placeholder="Enter a password"
+                  className="w-full h-20 pl-3 border-none outline-none text-slate-700 bg-slate-500 bg-opacity-20 placeholder:text-orange-500 text-start"
+                />
+                <button
+                  className="px-3 text-lg text-orange-600 bg-opacity-20 bg-slate-500"
+                  onClick={toggleEye}
+                >
+                  {open ? <IoEye /> : <IoEyeOffSharp />}
+                </button>
+              </div>
             </div>
             <p className="mt-16 text-sm font-medium text-blue-800 font-txtFont text-start">
               Already have an account?
