@@ -1,30 +1,52 @@
 import { useState } from "react";
+import { featuresList } from "../utills/fetaturesList";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 
 const User = ({ name, location, contact }) => {
   const [count, setCount] = useState(0);
+  const [isFeaturesVisible, setIsFeaturesVisible] = useState(false); // State to toggle feature visibility
+
+  const toggleFeatures = () => {
+    setIsFeaturesVisible(!isFeaturesVisible); // Toggle visibility on click
+  };
+
   return (
-    <div className="userCard mt-2">
-      <h2 className="font-txtFont text-md text-teal-700 font-semibold">
+    <div className="pb-10 mt-2 userCard">
+      <h2 className="font-semibold text-teal-700 font-txtFont text-md">
         Name: {name}
       </h2>
-      <h3 className="font-txtFont text-sm text-lime-950 font-medium">
+      <h3 className="text-sm font-medium font-txtFont text-lime-950">
         Location: {location}
       </h3>
-      <h4 className="font-txtFont text-sm text-cyan-800">
+      <h4 className="text-sm font-txtFont text-cyan-800">
         Contact Info: {contact}
       </h4>
-      <button
-        className="font-txtFont font-medium text-[12px] rounded-lg px-2 py-1 text-white my-2 bg-blue-600 hover:bg-blue-800 active:bg-white active:text-blue-800 active:border border-blue-700 hover:scale-95 duration-200"
-        onClick={() => {
-          const newCount = count + 1;
-          setCount(newCount);
-        }}
-      >
-        Show more
-      </button>
-      <h4 className="font-txtFont text-sm text-pink-600 p-3">
-        You have clicked this button has been clicked {count} times.
-      </h4>
+
+      <div className="flex items-center justify-between pl-4 mt-3">
+        <h4 className="font-semibold font-txtFont text-cyan-600">
+          Key Features for explore:
+        </h4>
+        <span
+          className="p-2 text-sm text-white transition-colors duration-200 ease-in-out rounded-full cursor-pointer mr-7 bg-cyan-700 bg-opacity-20 hover:bg-opacity-40"
+          onClick={toggleFeatures}
+        >
+          {isFeaturesVisible ? <FaCaretUp /> : <FaCaretDown />}
+        </span>
+      </div>
+
+      {/* Conditionally rendering the feature list based on state */}
+      {isFeaturesVisible && (
+        <ul className="px-8 mt-2 text-sm text-gray-600 list-disc text-start font-txtFont">
+          {featuresList.map((feature, index) => (
+            <li
+              key={index}
+              className="p-2 mb-1 font-medium duration-200 ease-in-out rounded-md cursor-pointer text-slate-600 hover:bg-teal-400 hover:bg-opacity-20 hover:translate-x-2"
+            >
+              {feature}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
